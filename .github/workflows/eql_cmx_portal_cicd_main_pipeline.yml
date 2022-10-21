@@ -48,7 +48,7 @@ jobs:
           tenant-id: ${{ secrets.tenant_id }}  
           download-path: ${{ secrets.dev_url }}
           website-id: 'dd7f978e-c24e-ed11-bba1-000d3a35cd77'
-          
+          working-directory: CMX-Pipeline/eql_cmx_portal_cicd_repository_/develop
           
   release-to-build-env:
     strategy:
