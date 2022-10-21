@@ -88,6 +88,6 @@ jobs:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: merge pull requests
-        run: gh pr merge --auto --merge ${{ inputs.branch_name }}-${{ inputs.solution_name }}
+        run: gh pr merge --admin --merge ${{ inputs.branch_name }}-${{ inputs.solution_name }}
         env:
             GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
