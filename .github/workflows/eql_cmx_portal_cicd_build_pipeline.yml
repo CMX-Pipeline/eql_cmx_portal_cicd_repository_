@@ -86,8 +86,3 @@ jobs:
         run: gh pr create -B develop -H ${{ inputs.branch_name }}-${{ inputs.solution_name }} --title 'Merge ${{ inputs.branch_name }} into develop' --body 'Created by Github action'
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: merge pull request
-        run: gh pr merge
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
