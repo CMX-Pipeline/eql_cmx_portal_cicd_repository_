@@ -87,10 +87,7 @@ jobs:
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Merge Pull Request
-        uses: juliangruber/merge-pull-request-action@v1
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          number: 1
-          method: squash
-          repo: CMX-Pipeline/eql_cmx_portal_cicd_repository_
+      - name: merge pull request
+        run: gh pr merge -m
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
