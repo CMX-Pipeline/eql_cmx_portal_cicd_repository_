@@ -71,7 +71,7 @@ jobs:
           solution-file: ${{ inputs.solution_exported_folder}}/${{ inputs.solution_name }}.zip
           solution-folder: ${{ inputs.solution_folder}}/${{ inputs.solution_name }}
           solution-type: 'Unmanaged'
-          overwrite-files: true
+          overwrite-files: false
 
       - name: branch solution
         uses: microsoft/powerplatform-actions/branch-solution@v0
