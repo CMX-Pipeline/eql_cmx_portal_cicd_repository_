@@ -93,4 +93,4 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           number: 1
           method: squash
-          repo: ${{ inputs.branch_name }}-${{ inputs.solution_name }}
+          repo: CMX-Pipeline/eql_cmx_portal_cicd_repository_
