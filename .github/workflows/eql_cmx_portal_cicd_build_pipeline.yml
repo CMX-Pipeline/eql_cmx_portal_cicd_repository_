@@ -71,7 +71,7 @@ jobs:
           solution-file: ${{ inputs.solution_exported_folder}}/${{ inputs.solution_name }}.zip
           solution-folder: ${{ inputs.solution_folder}}/${{ inputs.solution_name }}
           solution-type: 'Unmanaged'
-          overwrite-files: false
+          overwrite-files: true
 
       - name: branch solution
         uses: microsoft/powerplatform-actions/branch-solution@v0
@@ -80,6 +80,9 @@ jobs:
           solution-target-folder: ${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           allow-empty-commit: true
-          branch-name:  develop
-          clobber-branch: true
+          branch-name: ${{ inputs.branch_name }}-${{ inputs.solution_name }}
     
+      - name: create pull request
+        run: gh pr create -B develop -H ${{ inputs.branch_name }}-${{ inputs.solution_name }} --title 'Merge ${{ inputs.branch_name }} into develop' --body 'Created by Github action'
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
