@@ -86,3 +86,11 @@ jobs:
         run: gh pr create -B develop -H ${{ inputs.branch_name }}-${{ inputs.solution_name }} --title 'Merge ${{ inputs.branch_name }} into develop' --body 'Created by Github action'
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Approve pull request
+        if: github.actor == 'dependabot[bot]'
+        uses: andrewmusgrave/automatic-pull-request-review@0.0.5
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          event: APPROVE
+          body: 'Thank you dependabot 🎊'
