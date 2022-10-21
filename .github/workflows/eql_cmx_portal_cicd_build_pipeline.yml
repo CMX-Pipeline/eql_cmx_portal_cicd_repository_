@@ -1,0 +1,85 @@
+name: export-and-branch-solution
+# Export solution from DEV environment
+#  unpack it and prepare, commit and push a git branch with the changes
+
+on:
+  workflow_call:
+    inputs:
+      # Change this value
+      solution_name:
+        description: 'name of the solution to worked on from Power Platform'
+        required: true
+        type: string
+      branch_name:
+        description: 'name of the branch created'
+        required: true
+        type: string        
+       #Do Not change these values
+      solution_exported_folder:
+        description: 'folder name for staging the exported solution *do not change*'
+        required: true
+        default: out/exported/
+        type: string
+      solution_folder:
+        description: 'staging the unpacked solution folder before check-in *do not change*'
+        required: true
+        default: out/solutions/
+        type: string
+      solution_target_folder: 
+       description: 'folder name to be created and checked in *do not change*'
+       required: true
+       default: solutions/
+       type: string
+    secrets:
+      dev_url:
+        description: 'Dev environment url.'
+        required: true      
+      dev_client_id: 
+        description: 'The client id dev'
+        required: true
+      tenant_id: 
+        description: 'The tenant id'
+        required: true
+      dev_secrets_id:
+        description: 'The secret value for authentication using SPN'
+        required: true      
+
+jobs:
+  export-from-dev:
+    environment: dev    
+    runs-on: windows-latest
+    env:
+      RUNNER_DEBUG: 1
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          lfs: true
+
+      - name: export solution from dev
+        uses: microsoft/powerplatform-actions/export-solution@v0
+        with:
+          environment-url: ${{ secrets.dev_url }}
+          app-id: ${{ secrets.dev_client_id }}
+          client-secret: ${{ secrets.dev_secrets_id }}
+          tenant-id: ${{ secrets.tenant_id }}  
+          solution-name: ${{ inputs.solution_name }}
+          solution-output-file: ${{ inputs.solution_exported_folder}}/${{ inputs.solution_name }}.zip
+        
+      - name: unpack solution
+        uses: microsoft/powerplatform-actions/unpack-solution@v0
+        with:
+          solution-file: ${{ inputs.solution_exported_folder}}/${{ inputs.solution_name }}.zip
+          solution-folder: ${{ inputs.solution_folder}}/${{ inputs.solution_name }}
+          solution-type: 'Unmanaged'
+          overwrite-files: true
+
+      - name: branch solution
+        uses: microsoft/powerplatform-actions/branch-solution@v0
+        with:
+          solution-folder: ${{ inputs.solution_folder}}/${{ inputs.solution_name }}
+          solution-target-folder: ${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          allow-empty-commit: true
+          branch-name:  develop
+          clobber-branch: true
+    

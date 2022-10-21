@@ -1,0 +1,58 @@
+name: eql_cmx_portal_cicd_release_pipeline_to_data_migration_environment
+# prepare for releasing to data migration:
+
+on:
+  workflow_call :
+    inputs:
+      # Change this value
+      solution_name:
+        description: 'name of the solution'
+        required: true
+        type: string
+      #Do Not change these values
+      solution_release_folder:
+       description: 'folder where the released binaries are going to be hosted *do not change*'
+       type: string
+       default: out/release
+    secrets:
+      data_migration_url:
+        description: 'data_migration environment url.'
+        required: true      
+      data_migration_client_id:
+        description: 'The data_migration client id'
+        required: true
+      data_migration_secrets_id:
+        description: 'The secret value for authentication for data_migration'
+        required: true
+      tenant_id: 
+        description: 'The tenant id'
+        required: true
+
+jobs:
+  data-migration:
+    runs-on: windows-latest
+    environment: data_migration
+    env:
+      RUNNER_DEBUG: 1
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        lfs: true
+
+    - name: Fetch the ready to ship solution from GH artifact store
+      uses: actions/download-artifact@v2
+      with:
+        name: managedSolutions
+        path: ${{ inputs.solution_release_folder}}
+        
+    - name: Import solution to sit env
+      uses: microsoft/powerplatform-actions/import-solution@v0
+      with:
+        environment-url: ${{ secrets.data_migration_url }}
+        app-id: ${{ secrets.data_migration_client_id }}
+        client-secret: ${{ secrets.data_migration_secrets_id }}
+        tenant-id: ${{ secrets.tenant_id }}
+        solution-name: ${{ inputs.solution_name }}
+        solution-file: ${{ inputs.solution_release_folder}}/${{ inputs.solution_name }}_managed.zip
+        force-overwrite: true
+        publish-changes: true
