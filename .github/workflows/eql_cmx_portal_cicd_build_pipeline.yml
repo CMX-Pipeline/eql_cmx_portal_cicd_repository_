@@ -87,10 +87,10 @@ jobs:
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Approve pull request
-        if: github.actor == 'dependabot[bot]'
-        uses: andrewmusgrave/automatic-pull-request-review@0.0.5
+      - name: Merge Pull Request
+        uses: juliangruber/merge-pull-request-action@v1
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          event: APPROVE
-          body: 'Thank you dependabot 🎊'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          number: 1
+          method: squash
+          repo: develop
