@@ -55,16 +55,20 @@ jobs:
         with:
           lfs: true
           
-      - name: check-solution
-        uses: microsoft/powerplatform-actions/check-solution@v0
+          
+      - name: powerapps-checker
+        uses: rajyraman/powerapps-checker@v1.4
         with:
-          environment-url: ${{ secrets.dev_url }}
-          app-id: ${{ secrets.dev_client_id }}
-          client-secret: ${{ secrets.dev_secrets_id }}
-          tenant-id: ${{ secrets.tenant_id }}  
-          path: ${{ inputs.solution_exported_folder}}/${{ inputs.solution_name }}.zip
-          geo: UnitedStates
-
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: develop
+          solutionName: ${{ inputs.solution_name }}
+          sourceEnvironmentUrl: ${{ secrets.dev_url }}
+          applicationId: ${{ secrets.dev_client_id }}
+          applicationSecret: ${{ secrets.dev_secrets_id }}
+          tenantId: ${{ secrets.tenant_id }}  
+          geography: 'UnitedStates'
+          saveResults: true
+          
       - name: export solution from dev
         uses: microsoft/powerplatform-actions/export-solution@v0
         with:
