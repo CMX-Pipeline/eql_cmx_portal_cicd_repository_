@@ -38,8 +38,8 @@ jobs:
         with:
           lfs: true
           
-      - name: powerapps-checker
-        uses: microsoft/powerplatform-actions/check-solution@v0
+      - name: download-paportal
+        uses: microsoft/powerplatform-actions/download-paportal@v0
         with:
           environment-url: ${{ secrets.dev_url }}
           app-id: ${{ secrets.dev_client_id }}
