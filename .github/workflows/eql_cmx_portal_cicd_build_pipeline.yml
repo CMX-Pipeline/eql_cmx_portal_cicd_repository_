@@ -55,7 +55,6 @@ jobs:
         with:
           lfs: true
           
-          
       - name: powerapps-checker
         uses: rajyraman/powerapps-checker@v1.4
         with:
