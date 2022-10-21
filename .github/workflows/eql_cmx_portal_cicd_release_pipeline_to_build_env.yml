@@ -57,11 +57,6 @@ jobs:
       with:
         lfs: true
         ref: develop
-        
-    - name: merge pull request
-      run: gh pr merge
-      env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: pack solution
       uses: microsoft/powerplatform-actions/pack-solution@v0
