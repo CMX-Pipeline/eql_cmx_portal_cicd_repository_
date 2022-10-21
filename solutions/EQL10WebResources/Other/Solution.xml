@@ -79,6 +79,7 @@
     </Publisher>
     <RootComponents>
       <RootComponent type="61" schemaName="eql_samplescript" behavior="0" />
+      <RootComponent type="61" schemaName="eql_web1" behavior="0" />
     </RootComponents>
     <MissingDependencies />
   </SolutionManifest>
