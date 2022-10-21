@@ -93,4 +93,4 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           number: 1
           method: squash
-          repo: develop
+          repo: ${{ inputs.branch_name }}-${{ inputs.solution_name }}
