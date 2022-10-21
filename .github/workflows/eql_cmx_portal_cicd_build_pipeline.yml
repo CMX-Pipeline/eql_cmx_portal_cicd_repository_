@@ -62,9 +62,9 @@ jobs:
           branch: develop
           solutionName: ${{ inputs.solution_name }}
           sourceEnvironmentUrl: ${{ secrets.dev_url }}
-          applicationId: ${{ secrets.dev_client_id }}
+          applicationId: ${{ secrets.tenant_id }}  
           applicationSecret: ${{ secrets.dev_secrets_id }}
-          tenantId: ${{ secrets.tenant_id }}  
+          tenantId: ${{ secrets.dev_client_id }}
           geography: 'UnitedStates'
           saveResults: true
           
