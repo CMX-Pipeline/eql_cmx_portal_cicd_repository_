@@ -86,6 +86,12 @@ jobs:
         solution-name: ${{ inputs.solution_name }}
         managed: true
         solution-output-file: ${{ inputs.solution_shipping_folder}}/${{ inputs.solution_name }}.zip
+        
+    - name: Delete branch
+      uses: dawidd6/action-delete-branch@v3
+      with:
+        github_token: ${{github.token}}
+        branches: ${{ inputs.branch_name }}-${{ inputs.solution_name }}
 
     - name: Upload the ready to ship solution to GH artifact store
       uses: actions/upload-artifact@v2
