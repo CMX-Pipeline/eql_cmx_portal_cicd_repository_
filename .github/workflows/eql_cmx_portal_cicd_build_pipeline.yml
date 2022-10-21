@@ -88,6 +88,6 @@ jobs:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: merge pull request
-        run: gh pr merge -m develop 
+        run: gh pr merge
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
