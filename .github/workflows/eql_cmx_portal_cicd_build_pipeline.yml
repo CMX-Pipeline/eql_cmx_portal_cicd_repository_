@@ -63,7 +63,6 @@ jobs:
           client-secret: ${{ secrets.dev_secrets_id }}
           tenant-id: ${{ secrets.tenant_id }}
           path: ${{ inputs.solution_exported_folder}}/${{ inputs.solution_name }}.zip
-          geo: 'UnitedStates'
           
       - name: export solution from dev
         uses: microsoft/powerplatform-actions/export-solution@v0
