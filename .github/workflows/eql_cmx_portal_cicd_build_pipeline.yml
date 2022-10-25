@@ -73,7 +73,7 @@ jobs:
           client-secret: ${{ secrets.dev_secrets_id }}
           tenant-id: ${{ secrets.tenant_id }}
           path: ${{ inputs.solution_exported_folder}}/${{ inputs.solution_name }}.zip
-          checker-logs-artifact-name: logs
+          checker-logs-artifact-name: logs/${{ inputs.solution_name }}
         
       # - name: unpack solution
       #   uses: microsoft/powerplatform-actions/unpack-solution@v0
@@ -115,7 +115,7 @@ jobs:
           git fetch --no-tags --prune --depth=1 origin
           git log --pretty=format: --name-only --diff-filter=A  | sort -u
           git checkout -b develop
-          fs.emptyDirSync(${{ inputs.solution_folder}}/${{ inputs.solution_name }})/logs
+          fs.emptyDirSync(${{ inputs.solution_folder}}/${{ inputs.solution_name }}/logs)
           fs.copySync('logs', '${{ inputs.solution_folder}}/${{ inputs.solution_name }}/logs')
           git add ${{ inputs.solution_folder}}/${{ inputs.solution_name }}/logs
           git commit
