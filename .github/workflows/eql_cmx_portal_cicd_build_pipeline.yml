@@ -73,6 +73,7 @@ jobs:
           client-secret: ${{ secrets.dev_secrets_id }}
           tenant-id: ${{ secrets.tenant_id }}
           path: ${{ inputs.solution_exported_folder}}/${{ inputs.solution_name }}.zip
+          checker-logs-artifact-name: CheckSolutionLogs
         
       - name: unpack solution
         uses: microsoft/powerplatform-actions/unpack-solution@v0
