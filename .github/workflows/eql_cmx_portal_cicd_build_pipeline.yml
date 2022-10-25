@@ -116,12 +116,11 @@ jobs:
           git config user.email "<>"
           git fetch --no-tags --prune --depth=1 origin
           git status
-          git log --pretty=format: --name-only --diff-filter=A  | sort -u
-          dir
           mkdir ${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}/logs
           copy logs/${{ inputs.solution_name }} ${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}/logs
-          git add ${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}/logs
-          git commit
+          git add logs
+          git pull origin
+          git commit -m "Added Logs to branch"
           git push
 
         env:
