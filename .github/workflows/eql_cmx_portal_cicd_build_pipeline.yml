@@ -73,7 +73,7 @@ jobs:
           client-secret: ${{ secrets.dev_secrets_id }}
           tenant-id: ${{ secrets.tenant_id }}
           path: ${{ inputs.solution_exported_folder}}/${{ inputs.solution_name }}.zip
-          checker-logs-artifact-name: logs-${{ inputs.solution_name }}
+          checker-logs-artifact-name: ${{ inputs.solution_name }}
         
       # - name: unpack solution
       #   uses: microsoft/powerplatform-actions/unpack-solution@v0
@@ -105,7 +105,7 @@ jobs:
       - name: Download Logs
         uses: actions/download-artifact@v2
         with:
-          name: logs-${{ inputs.solution_name }}
+          name: ${{ inputs.solution_name }}
 
       - name: push logs
         run: |
@@ -113,10 +113,10 @@ jobs:
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
           git fetch --no-tags --prune --depth=1 origin
+          git status
           git log --pretty=format: --name-only --diff-filter=A  | sort -u
-          git checkout -b develop
           mkdir ${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}/logs
-          copy logs-${{ inputs.solution_name }} ${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}/logs
+          copy ${{ inputs.solution_name }} ${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}/logs
           git add ${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}/logs
           git commit
           git push
