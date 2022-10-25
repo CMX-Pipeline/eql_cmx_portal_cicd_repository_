@@ -106,6 +106,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: ${{ inputs.solution_name }}
+          path: logs/${{ inputs.solution_name }}
 
 
       - name: push logs
@@ -118,7 +119,7 @@ jobs:
           git log --pretty=format: --name-only --diff-filter=A  | sort -u
           dir
           mkdir ${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}/logs
-          copy ${{ inputs.solution_name }} ${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}/logs
+          copy logs/${{ inputs.solution_name }} ${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}/logs
           git add ${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}/logs
           git commit
           git push
