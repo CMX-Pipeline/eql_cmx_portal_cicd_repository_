@@ -107,7 +107,7 @@ jobs:
         with:
           name: ${{ inputs.solution_name }}
 
-      - name: merge pull requests
+      - name: push logs
         run: |
           git --version
           git config user.name "GitHub Actions Bot"
