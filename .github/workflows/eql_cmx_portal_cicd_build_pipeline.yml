@@ -113,6 +113,7 @@ jobs:
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
           git fetch --no-tags --prune --depth=1 origin
+          git log --pretty=format: --name-only --diff-filter=A  | sort -u
           
           git add add ${{ inputs.solution_name }}
           git commit
