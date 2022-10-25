@@ -19,7 +19,6 @@ jobs:
     with:      
       solution_name: ${{ matrix.target }}
       branch_name: solution
-      saveResults: "true"
       solution_exported_folder: out/exported/
       solution_folder: out/solutions/
       solution_target_folder: solutions/
