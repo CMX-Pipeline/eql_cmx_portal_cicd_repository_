@@ -17,7 +17,7 @@ jobs:
       max-parallel: 1
       matrix:
         target: [EQL10WebResources]
-    uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_build_pipeline.yml
+    uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_build_pipeline.yml@abai
     with:      
       solution_name: ${{ matrix.target }}
       branch_name: solution
