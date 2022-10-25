@@ -114,7 +114,7 @@ jobs:
           git config user.email "<>"
           git fetch --no-tags --prune --depth=1 origin
           
-          gh add ${{ inputs.solution_name }}
+          git add add ${{ inputs.solution_name }}
           git commit
           git push
 
