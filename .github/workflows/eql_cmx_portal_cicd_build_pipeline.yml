@@ -75,54 +75,52 @@ jobs:
           path: ${{ inputs.solution_exported_folder}}/${{ inputs.solution_name }}.zip
           checker-logs-artifact-name: ${{ inputs.solution_name }}
         
-      # - name: unpack solution
-      #   uses: microsoft/powerplatform-actions/unpack-solution@v0
-      #   with:
-      #     solution-file: ${{ inputs.solution_exported_folder}}/${{ inputs.solution_name }}.zip
-      #     solution-folder: ${{ inputs.solution_folder}}/${{ inputs.solution_name }}
-      #     solution-type: 'Unmanaged'
-      #     overwrite-files: true
+      - name: unpack solution
+        uses: microsoft/powerplatform-actions/unpack-solution@v0
+        with:
+          solution-file: ${{ inputs.solution_exported_folder}}/${{ inputs.solution_name }}.zip
+          solution-folder: ${{ inputs.solution_folder}}/${{ inputs.solution_name }}
+          solution-type: 'Unmanaged'
+          overwrite-files: true
 
-      # - name: branch solution
-      #   uses: microsoft/powerplatform-actions/branch-solution@v0
-      #   with:
-      #     solution-folder: ${{ inputs.solution_folder}}/${{ inputs.solution_name }}
-      #     solution-target-folder: ${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}
-      #     repo-token: ${{ secrets.GITHUB_TOKEN }}
-      #     allow-empty-commit: true
-      #     branch-name: ${{ inputs.branch_name }}-${{ inputs.solution_name }}
+      - name: branch solution
+        uses: microsoft/powerplatform-actions/branch-solution@v0
+        with:
+          solution-folder: ${{ inputs.solution_folder}}/${{ inputs.solution_name }}
+          solution-target-folder: ${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          allow-empty-commit: true
+          branch-name: ${{ inputs.branch_name }}-${{ inputs.solution_name }}
     
-      # - name: create pull request
-      #   run: gh pr create -B develop -H ${{ inputs.branch_name }}-${{ inputs.solution_name }} --title 'Merge ${{ inputs.branch_name }} into develop' --body 'Created by Github action'
-      #   env:
-      #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: create pull request
+        run: gh pr create -B develop -H ${{ inputs.branch_name }}-${{ inputs.solution_name }} --title 'Merge ${{ inputs.branch_name }} into develop' --body 'Created by Github action'
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: merge pull requests
-      #   run: gh pr merge --admin --merge ${{ inputs.branch_name }}-${{ inputs.solution_name }}
-      #   env:
-      #       GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - name: merge pull requests
+        run: gh pr merge --admin --merge ${{ inputs.branch_name }}-${{ inputs.solution_name }}
+        env:
+            GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
             
-      - name: Download Logs
+      - name: download check-solution logs
         uses: actions/download-artifact@v2
         with:
           name: ${{ inputs.solution_name }}
           path: logs/${{ inputs.solution_name }}
 
 
-      - name: push logs
+      - name: push check-solution logs to branch
         run: |
           git --version
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
           git fetch --no-tags --prune --depth=1 origin
-          git status
           mkdir ${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}/logs
           copy logs/${{ inputs.solution_name }} ${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}/logs
           git add logs
           git pull origin
           git commit -m "Added Logs to branch"
           git push
-
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
