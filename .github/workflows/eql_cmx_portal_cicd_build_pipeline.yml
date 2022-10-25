@@ -55,7 +55,6 @@ jobs:
         with:
           lfs: true
           ref: abai
-        
                         
       - name: export solution from dev
         uses: microsoft/powerplatform-actions/export-solution@v0
@@ -75,34 +74,34 @@ jobs:
           client-secret: ${{ secrets.dev_secrets_id }}
           tenant-id: ${{ secrets.tenant_id }}
           path: ${{ inputs.solution_exported_folder}}/${{ inputs.solution_name }}.zip
-          checker-logs-artifact-name: ${{ inputs.solution_name }}
+          checker-logs-artifact-name: '\${{ inputs.solution_name }}\'
         
-      - name: unpack solution
-        uses: microsoft/powerplatform-actions/unpack-solution@v0
-        with:
-          solution-file: ${{ inputs.solution_exported_folder}}/${{ inputs.solution_name }}.zip
-          solution-folder: ${{ inputs.solution_folder}}/${{ inputs.solution_name }}
-          solution-type: 'Unmanaged'
-          overwrite-files: true
+      # - name: unpack solution
+      #   uses: microsoft/powerplatform-actions/unpack-solution@v0
+      #   with:
+      #     solution-file: ${{ inputs.solution_exported_folder}}/${{ inputs.solution_name }}.zip
+      #     solution-folder: ${{ inputs.solution_folder}}/${{ inputs.solution_name }}
+      #     solution-type: 'Unmanaged'
+      #     overwrite-files: true
 
-      - name: branch solution
-        uses: microsoft/powerplatform-actions/branch-solution@v0
-        with:
-          solution-folder: ${{ inputs.solution_folder}}/${{ inputs.solution_name }}
-          solution-target-folder: ${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          allow-empty-commit: true
-          branch-name: ${{ inputs.branch_name }}-${{ inputs.solution_name }}
+      # - name: branch solution
+      #   uses: microsoft/powerplatform-actions/branch-solution@v0
+      #   with:
+      #     solution-folder: ${{ inputs.solution_folder}}/${{ inputs.solution_name }}
+      #     solution-target-folder: ${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}
+      #     repo-token: ${{ secrets.GITHUB_TOKEN }}
+      #     allow-empty-commit: true
+      #     branch-name: ${{ inputs.branch_name }}-${{ inputs.solution_name }}
     
-      - name: create pull request
-        run: gh pr create -B develop -H ${{ inputs.branch_name }}-${{ inputs.solution_name }} --title 'Merge ${{ inputs.branch_name }} into develop' --body 'Created by Github action'
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: create pull request
+      #   run: gh pr create -B develop -H ${{ inputs.branch_name }}-${{ inputs.solution_name }} --title 'Merge ${{ inputs.branch_name }} into develop' --body 'Created by Github action'
+      #   env:
+      #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: merge pull requests
-        run: gh pr merge --admin --merge ${{ inputs.branch_name }}-${{ inputs.solution_name }}
-        env:
-            GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      # - name: merge pull requests
+      #   run: gh pr merge --admin --merge ${{ inputs.branch_name }}-${{ inputs.solution_name }}
+      #   env:
+      #       GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
             
       # - name: download all artifacts
       #   uses: actions/download-artifact@v3

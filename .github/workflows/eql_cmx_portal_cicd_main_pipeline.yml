@@ -5,6 +5,8 @@ run-name: Triggered by @${{ github.actor }}
 on:
   release:
     types: [created]
+  push:
+    branches: [ "abai" ]
     
   workflow_dispatch:
   
