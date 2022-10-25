@@ -73,7 +73,7 @@ jobs:
           client-secret: ${{ secrets.dev_secrets_id }}
           tenant-id: ${{ secrets.tenant_id }}
           path: ${{ inputs.solution_exported_folder}}/${{ inputs.solution_name }}.zip
-          checker-logs-artifact-name: CheckSolutionLogs
+          checker-logs-artifact-name: ${{ inputs.solution_name }}
         
       - name: unpack solution
         uses: microsoft/powerplatform-actions/unpack-solution@v0
@@ -102,8 +102,8 @@ jobs:
         env:
             GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
             
-      - name: download all artifacts
-        uses: actions/download-artifact@v3
+      # - name: download all artifacts
+      #   uses: actions/download-artifact@v3
         
       - name: Display structure of downloaded files
         run: ls -R
