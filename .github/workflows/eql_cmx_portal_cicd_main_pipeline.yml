@@ -55,7 +55,7 @@ jobs:
         max-parallel: 1
         matrix:
           target: [EQL10WebResources]
-    needs: [ build, download-portal-data ]
+    needs: [ build ]
     uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_release_pipeline_to_build_env.yml@master
     with:
       solution_name: ${{ matrix.target }}
