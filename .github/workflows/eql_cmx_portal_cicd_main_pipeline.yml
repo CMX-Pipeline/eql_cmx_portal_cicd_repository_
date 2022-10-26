@@ -70,25 +70,7 @@ jobs:
       build_secrets_id: ${{ secrets.build_secrets_id }}
       tenant_id: ${{ secrets.tenant_id }}
       
-  release-paportaldata-to-build-env:
-      needs: [ release-to-build-env ]
-      runs-on: ubuntu-latest
-      environment: build
-      env:
-        RUNNER_DEBUG: 1
-      steps:
-        - uses: actions/checkout@v3
-          with:
-            lfs: true
-        - name: upload-paportal
-          uses: microsoft/powerplatform-actions/upload-paportal@v0
-          with:
-            environment-url: ${{ secrets.build_url }}
-            app-id: ${{ secrets.build_client_id }}
-            client-secret: ${{ secrets.build_secrets_id }}
-            tenant-id: ${{ secrets.tenant_id }}
-            upload-path: ${{ secrets.dev_url }}
-           
+          
   release-to-sit-env:
     strategy:
       max-parallel: 1
@@ -105,25 +87,6 @@ jobs:
       sit_secrets_id: ${{ secrets.sit_secrets_id }}
       tenant_id: ${{ secrets.tenant_id }}
       
-  release-paportaldata-to-sit-env:
-      needs: [ release-to-sit-env ]
-      runs-on: ubuntu-latest
-      environment: build
-      env:
-        RUNNER_DEBUG: 1
-      steps:
-        - uses: actions/checkout@v3
-          with:
-            lfs: true
-        - name: upload-paportal
-          uses: microsoft/powerplatform-actions/upload-paportal@v0
-          with:
-            environment-url: ${{ secrets.sit_url }}
-            app-id: ${{ secrets.sit_client_id }}
-            client-secret: ${{ secrets.sit_secrets_id }}
-            tenant-id: ${{ secrets.tenant_id }}
-            upload-path: ${{ secrets.build_url }}    
-
   release-to-data-migration-env:
     strategy:
       max-parallel: 1
