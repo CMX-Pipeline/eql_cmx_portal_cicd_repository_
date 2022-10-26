@@ -27,7 +27,7 @@ on:
         
 
 jobs:
-  download-upload-portal-data-from-dev-env:
+  download-portal-data-from-dev-env:
     runs-on:  ubuntu-latest
     environment: dev
     env:
@@ -49,7 +49,7 @@ jobs:
         working-directory: CMX-Pipeline/eql_cmx_portal_cicd_repository_/develop
         
 
-  download-upload-portal-data-to-build-env:
+  upload-portal-data-to-build-env:
     runs-on:  ubuntu-latest
     environment: build
     env:
