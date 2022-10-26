@@ -80,7 +80,7 @@ jobs:
       build_url: ${{ secrets.build_url }}
       build_client_id: ${{ secrets.build_client_id }}
       build_secrets_id: ${{ secrets.build_secrets_id }}
-      tenant-id: ${{ secrets.tenant_id }}    
+      tenant_id: ${{ secrets.tenant_id }}    
          
   release-to-sit-env:
     strategy:
@@ -108,7 +108,7 @@ jobs:
         sit_url: ${{ secrets.sit_url }}
         sit_client_id: ${{ secrets.sit_client_id }}
         sit_secrets_id: ${{ secrets.sit_secrets_id }}
-        tenant-id: ${{ secrets.tenant_id }}  
+        tenant_id: ${{ secrets.tenant_id }}  
       
   release-to-data-migration-env:
     strategy:
