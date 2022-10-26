@@ -71,7 +71,7 @@ jobs:
       tenant_id: ${{ secrets.tenant_id }}
       
   release-paportaldata-to-build-env:
-      needs: [ download-portal-data ]
+      needs: [ release-to-build-env ]
       runs-on: ubuntu-latest
       environment: build
       env:
@@ -87,7 +87,7 @@ jobs:
             app-id: ${{ secrets.build_client_id }}
             client-secret: ${{ secrets.build_secrets_id }}
             tenant-id: ${{ secrets.tenant_id }}
-            upload-path: ${{ secrets.build_url }}
+            upload-path: ${{ secrets.dev_url }}
            
   release-to-sit-env:
     strategy:
@@ -106,7 +106,7 @@ jobs:
       tenant_id: ${{ secrets.tenant_id }}
       
   release-paportaldata-to-sit-env:
-      needs: [ release-paportaldata-to-build-env ]
+      needs: [ release-to-sit-env ]
       runs-on: ubuntu-latest
       environment: build
       env:
@@ -118,9 +118,9 @@ jobs:
         - name: upload-paportal
           uses: microsoft/powerplatform-actions/upload-paportal@v0
           with:
-            environment-url: ${{ secrets.build_url }}
-            app-id: ${{ secrets.build_client_id }}
-            client-secret: ${{ secrets.build_secrets_id }}
+            environment-url: ${{ secrets.sit_url }}
+            app-id: ${{ secrets.sit_client_id }}
+            client-secret: ${{ secrets.sit_secrets_id }}
             tenant-id: ${{ secrets.tenant_id }}
             upload-path: ${{ secrets.build_url }}    
 
