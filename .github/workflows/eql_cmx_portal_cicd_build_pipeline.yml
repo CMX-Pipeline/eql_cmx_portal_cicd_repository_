@@ -119,7 +119,7 @@ jobs:
           git add logs
           git pull origin
           git commit -m "Added Logs to branch"
-          git push
+          git push develop
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
