@@ -2,17 +2,6 @@ name: eql_cmx_portal_cicd_download_upload_portal_data_pipeline
 
 on:
   workflow_call :
-    inputs:
-      # Change this value
-      solution_name:
-        description: 'name of the solution'
-        required: true
-        type: string
-      #Do Not change these values
-      solution_release_folder:
-       description: 'folder where the released binaries are going to be hosted *do not change*'
-       type: string
-       default: out/release
     secrets:
       portal_data_url:
         description: 'portal_data environment url.'
