@@ -46,7 +46,9 @@ jobs:
         client-secret: ${{ secrets.portal_data_secrets_id }}
         tenant-id: ${{ secrets.tenant_id }}
         download-path: ${{ secrets.portal_data_url }}
-
+        website-id: 'dd7f978e-c24e-ed11-bba1-000d3a35cd77'
+        working-directory: CMX-Pipeline/eql_cmx_portal_cicd_repository_/develop
+        
     - name: upload-paportal
       uses: microsoft/powerplatform-actions/upload-paportal@v0
       with:
@@ -55,4 +57,4 @@ jobs:
         client-secret: ${{ secrets.portal_data_secrets_id }}
         tenant-id: ${{ secrets.tenant_id }}
         download-path: ${{ secrets.portal_data_url }}
-    
+        
