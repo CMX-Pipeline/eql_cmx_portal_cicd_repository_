@@ -1,0 +1,58 @@
+name: eql_cmx_portal_cicd_download_upload_portal_data_pipeline
+
+on:
+  workflow_call :
+    inputs:
+      # Change this value
+      solution_name:
+        description: 'name of the solution'
+        required: true
+        type: string
+      #Do Not change these values
+      solution_release_folder:
+       description: 'folder where the released binaries are going to be hosted *do not change*'
+       type: string
+       default: out/release
+    secrets:
+      portal_data_url:
+        description: 'portal_data environment url.'
+        required: true      
+      portal_data_client_id:
+        description: 'The portal_data client id'
+        required: true
+      portal_data_secrets_id:
+        description: 'The secret value for authentication for portal_data'
+        required: true
+      tenant_id: 
+        description: 'The tenant id'
+        required: true
+        
+
+jobs:
+  download-upload-portal-data:
+    runs-on:  ubuntu-latest
+    env:
+      RUNNER_DEBUG: 1
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        lfs: true
+        
+    - name: download-paportal
+      uses: microsoft/powerplatform-actions/download-paportal@v0
+      with:
+        environment-url: ${{ secrets.portal_data_url }}
+        app-id: ${{ secrets.portal_data_client_id }}
+        client-secret: ${{ secrets.portal_data_secrets_id }}
+        tenant-id: ${{ secrets.tenant_id }}
+        download-path: ${{ secrets.portal_data_url }}
+
+    - name: upload-paportal
+      uses: microsoft/powerplatform-actions/upload-paportal@v0
+      with:
+        environment-url: ${{ secrets.portal_data_url }}
+        app-id: ${{ secrets.portal_data_client_id }}
+        client-secret: ${{ secrets.portal_data_secrets_id }}
+        tenant-id: ${{ secrets.tenant_id }}
+        download-path: ${{ secrets.portal_data_url }}
+    
