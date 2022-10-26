@@ -69,8 +69,16 @@ jobs:
       build_client_id: ${{ secrets.build_client_id }}
       build_secrets_id: ${{ secrets.build_secrets_id }}
       tenant_id: ${{ secrets.tenant_id }}
-      
-          
+  
+  download-upload-portal-data-build-env:
+    needs: [ release-to-build-env ]
+    uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_download_upload_portal_data_pipeline.yml@master
+    secrets:
+      portal_data_url: ${{ secrets.build_url }}
+      portal_data_client_id: ${{ secrets.build_client_id }}
+      portal_data_secrets_id: ${{ secrets.build_secrets_id }}
+      tenant-id: ${{ secrets.tenant_id }}    
+         
   release-to-sit-env:
     strategy:
       max-parallel: 1
@@ -86,6 +94,15 @@ jobs:
       sit_client_id: ${{ secrets.sit_client_id }}
       sit_secrets_id: ${{ secrets.sit_secrets_id }}
       tenant_id: ${{ secrets.tenant_id }}
+    
+  download-upload-portal-data-sit-env:
+      needs: [ release-to-sit-env ]
+      uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_download_upload_portal_data_pipeline.yml@master
+      secrets:
+        portal_data_url: ${{ secrets.build_url }}
+        portal_data_client_id: ${{ secrets.build_client_id }}
+        portal_data_secrets_id: ${{ secrets.build_secrets_id }}
+        tenant-id: ${{ secrets.tenant_id }}  
       
   release-to-data-migration-env:
     strategy:
