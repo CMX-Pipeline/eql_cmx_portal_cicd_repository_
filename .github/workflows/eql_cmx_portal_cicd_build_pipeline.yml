@@ -115,6 +115,7 @@ jobs:
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
           git fetch --no-tags --prune --depth=1 origin
+          git checkout develop
           mkdir ${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}/logs
           copy logs/${{ inputs.solution_name }} ${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}/logs
           git add logs
@@ -124,8 +125,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-      
-        
       - name: Display structure of downloaded files
         run: ls -R
       
