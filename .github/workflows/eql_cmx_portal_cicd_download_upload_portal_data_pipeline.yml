@@ -1,0 +1,101 @@
+name: eql_cmx_portal_cicd_download_upload_portal_data_pipeline
+
+on:
+  workflow_call :
+    inputs:
+      # Change this value
+      solution_name:
+        description: 'name of the solution to worked on from Power Platform'
+        required: true
+        type: string
+      solution_target_folder: 
+       description: 'folder name to be created and checked in *do not change*'
+       required: true
+       default: solutions/
+       type: string
+    secrets:
+      dev_url:
+        description: 'portal_data environment url.'
+        required: true      
+      dev_client_id:
+        description: 'The portal_data client id'
+        required: true
+      dev_secrets_id:
+        description: 'The secret value for authentication for portal_data'
+        required: true
+      build_url:
+        description: 'portal_data environment url.'
+        required: true      
+      build_client_id:
+        description: 'The portal_data client id'
+        required: true
+      build_secrets_id:
+        description: 'The secret value for authentication for portal_data'
+        required: true
+      tenant_id: 
+        description: 'The tenant id'
+        required: true
+        
+
+jobs:
+  download-portal-data-from-dev-env:
+    runs-on:  ubuntu-latest
+    environment: dev
+    env:
+      RUNNER_DEBUG: 1
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        lfs: true
+        
+    - name: download-paportal
+      uses: microsoft/powerplatform-actions/download-paportal@v0
+      with:
+        environment-url: ${{ secrets.dev_url }}
+        app-id: ${{ secrets.dev_client_id }}
+        client-secret: ${{ secrets.dev_secrets_id }}
+        tenant-id: ${{ secrets.tenant_id }}
+        download-path: ${{ secrets.dev_url }}
+        website-id: '5001a9ef-2555-ed11-bba2-000d3a34c578'
+        working-directory: portaldata
+        
+    - name: push portal data to branch
+      run: |
+          git --version
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+          git fetch --no-tags --prune --depth=1 origin
+          git checkout develop
+          ls
+          # mkdir ${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}/logs
+          cp portaldata ${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}/data
+          git add logs
+          git pull origin
+          git commit -m "Added Logs to branch"
+          git push
+      env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+    - name: Display structure of downloaded files
+      run: ls -R
+        
+
+  # upload-portal-data-to-build-env:
+  #  needs: [ download-portal-data-from-dev-env ]
+  #  runs-on:  ubuntu-latest
+  #  environment: build
+  #  env:
+  #    RUNNER_DEBUG: 1
+  #  steps:
+  #  - uses: actions/checkout@v3
+  #    with:
+  #      lfs: true        
+  #  - name: upload-paportal
+  #    uses: microsoft/powerplatform-actions/upload-paportal@v0
+  #    with:
+  #      environment-url: ${{ secrets.build_url }}
+  #      app-id: ${{ secrets.build_client_id }}
+  #      client-secret: ${{ secrets.build_secrets_id }}
+  #      tenant-id: ${{ secrets.tenant_id }}
+  #      upload-path: ${{ secrets.build_url }}
+  #      working-directory: CMX-Pipeline/eql_cmx_portal_cicd_repository_/develop
