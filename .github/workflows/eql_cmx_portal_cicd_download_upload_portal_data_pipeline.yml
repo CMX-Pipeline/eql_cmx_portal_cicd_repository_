@@ -66,7 +66,7 @@ jobs:
           git config user.email "<>"
           git fetch --no-tags --prune --depth=1 origin
           git checkout develop
-          # mkdir ${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}/logs
+          mkdir ${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}/data
           cp portaldata ${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}/data
           git add logs
           git pull origin
