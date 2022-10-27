@@ -61,13 +61,14 @@ jobs:
         
     - name: push portal data to branch
       run: |
+          ls -d */
           git --version
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
           git fetch --no-tags --prune --depth=1 origin
           git checkout develop
           # mkdir ${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}/logs
-          cp ${{ inputs.solution_target_folder}}/portaldata ${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}/data
+          cp ${{ inputs.solution_target_folder}}portaldata ${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}/data
           git add logs
           git pull origin
           git commit -m "Added Logs to branch"
