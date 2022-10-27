@@ -28,7 +28,7 @@ on:
 
 jobs:
   download-portal-data-from-dev-env:
-    runs-on:  windows-latest
+    runs-on:  ubuntu-latest
     environment: dev
     env:
       RUNNER_DEBUG: 1
