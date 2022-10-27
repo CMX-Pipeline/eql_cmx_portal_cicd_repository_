@@ -49,7 +49,7 @@ jobs:
       tenant_id: ${{ secrets.tenant_id }}
   
   download-upload-portal-data-build-env:
-    needs: [ release-to-build-env ]
+    needs: [ build, release-to-build-env ]
     uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_download_upload_portal_data_pipeline.yml@master
     secrets:
       dev_url: ${{ secrets.dev_url }}
