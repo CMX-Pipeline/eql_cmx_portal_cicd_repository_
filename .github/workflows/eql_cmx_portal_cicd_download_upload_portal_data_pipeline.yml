@@ -2,6 +2,17 @@ name: eql_cmx_portal_cicd_download_upload_portal_data_pipeline
 
 on:
   workflow_call :
+    inputs:
+      # Change this value
+      solution_name:
+        description: 'name of the solution to worked on from Power Platform'
+        required: true
+        type: string
+      solution_target_folder: 
+       description: 'folder name to be created and checked in *do not change*'
+       required: true
+       default: solutions/
+       type: string
     secrets:
       dev_url:
         description: 'portal_data environment url.'
@@ -56,7 +67,7 @@ jobs:
           git fetch --no-tags --prune --depth=1 origin
           git checkout develop
           # mkdir ${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}/logs
-          copy portaldata ${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}/data
+          fs.copy("portaldata", "${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}/data")
           git add logs
           git pull origin
           git commit -m "Added Logs to branch"
