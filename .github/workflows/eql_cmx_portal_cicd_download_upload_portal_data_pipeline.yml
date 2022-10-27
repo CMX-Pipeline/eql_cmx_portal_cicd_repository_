@@ -57,7 +57,6 @@ jobs:
         tenant-id: ${{ secrets.tenant_id }}
         download-path: ${{ secrets.dev_url }}
         website-id: '5001a9ef-2555-ed11-bba2-000d3a34c578'
-        working-directory: portaldata
         
     - name: push portal data to branch
       run: |
