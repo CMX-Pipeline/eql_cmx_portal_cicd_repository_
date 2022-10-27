@@ -66,9 +66,9 @@ jobs:
           git config user.email "<>"
           git fetch --no-tags --prune --depth=1 origin
           git checkout develop
-          mkdir data
-          cp -fR portaldata data
-          git add logs
+          mkdir portaldata
+          cp -fR portaldata portaldata
+          git add portaldata
           git pull origin
           git commit -m "Added Logs to branch"
           git push
