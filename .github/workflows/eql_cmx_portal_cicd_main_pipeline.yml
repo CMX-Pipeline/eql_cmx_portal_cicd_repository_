@@ -12,51 +12,29 @@ on:
   
 
 jobs:
-  build:
-    strategy:
-      max-parallel: 1
-      matrix:
-        target: [EQL10WebResources]
-    uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_build_pipeline.yml@abai
-    with:      
-      solution_name: ${{ matrix.target }}
-      branch_name: solution
-      solution_exported_folder: out/exported/
-      solution_folder: out/solutions/
-      solution_target_folder: solutions/
-    secrets: 
-      dev_url: ${{ secrets.dev_url }}
-      dev_client_id: ${{ secrets.dev_client_id }}
-      tenant_id: ${{ secrets.tenant_id }}  
-      dev_secrets_id: ${{ secrets.dev_secrets_id }}
-
-  # download-portal-data:
-  #   needs: [ build ]
-  #   runs-on: ubuntu-latest
-  #   environment: dev
-  #   env:
-  #     RUNNER_DEBUG: 1
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #       with:
-  #         lfs: true
-          
-  #     - name: download-paportal
-  #       uses: microsoft/powerplatform-actions/download-paportal@v0
-  #       with:
-  #         environment-url: ${{ secrets.dev_url }}
-  #         app-id: ${{ secrets.dev_client_id }}
-  #         client-secret: ${{ secrets.dev_secrets_id }}
-  #         tenant-id: ${{ secrets.tenant_id }}  
-  #         download-path: ${{ secrets.dev_url }}
-  #         website-id: 'dd7f978e-c24e-ed11-bba1-000d3a35cd77'
-  #         working-directory: CMX-Pipeline/eql_cmx_portal_cicd_repository_/develop
+  # build:
+  #   strategy:
+  #     max-parallel: 1
+  #     matrix:
+  #       target: [EQL20Customizing]
+  #   uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_build_pipeline.yml@master
+  #   with:      
+  #     solution_name: ${{ matrix.target }}
+  #     branch_name: solution
+  #     solution_exported_folder: out/exported/
+  #     solution_folder: out/solutions/
+  #     solution_target_folder: solutions/
+  #   secrets: 
+  #     dev_url: ${{ secrets.dev_url }}
+  #     dev_client_id: ${{ secrets.dev_client_id }}
+  #     tenant_id: ${{ secrets.tenant_id }}  
+  #     dev_secrets_id: ${{ secrets.dev_secrets_id }}
           
   # release-to-build-env:
   #   strategy:
   #       max-parallel: 1
   #       matrix:
-  #         target: [EQL10WebResources]
+  #         target: [EQL20Customizing]
   #   needs: [ build ]
   #   uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_release_pipeline_to_build_env.yml@master
   #   with:
@@ -71,30 +49,28 @@ jobs:
   #     build_client_id: ${{ secrets.build_client_id }}
   #     build_secrets_id: ${{ secrets.build_secrets_id }}
   #     tenant_id: ${{ secrets.tenant_id }}
-
-  # approval-to-deploy-to-sit-env:
-  #   needs: [ release-to-build-env, download-portal-data] 
-  #   runs-on: ubuntu-latest
-  #   env:
-  #     RUNNER_DEBUG: 1
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #       with:
-  #         lfs: true
-          
-  #     - uses: trstringer/manual-approval@v1
-  #       with:
-  #         secret: ${{ github.TOKEN }}
-  #         approvers: trial-acc-rao,arvingers4
-  #         minimum-approvals: 1
-  #         issue-title: "release to sit environment"
-
+  
+  download-upload-portal-data-build-env:
+    needs: [ build, release-to-build-env ]
+    uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_download_upload_portal_data_pipeline.yml@master
+    with:
+      solution_name: portalsolution
+      solution_target_folder: solutions/
+    secrets:
+      dev_url: ${{ secrets.dev_url }}
+      dev_client_id: ${{ secrets.dev_client_id }}
+      dev_secrets_id: ${{ secrets.dev_secrets_id }}
+      build_url: ${{ secrets.build_url }}
+      build_client_id: ${{ secrets.build_client_id }}
+      build_secrets_id: ${{ secrets.build_secrets_id }}
+      tenant_id: ${{ secrets.tenant_id }}    
+         
   # release-to-sit-env:
   #   strategy:
   #     max-parallel: 1
   #     matrix:
-  #       target: [EQL10WebResources]
-  #   needs: [ approval-to-deploy-to-sit-env ]
+  #       target: [EQL20Customizing]
+  #   needs: [ release-to-build-env ]
   #   uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_release_pipeline_to_sit_env.yml@master
   #   with:
   #     solution_name: ${{ matrix.target }}
@@ -104,30 +80,25 @@ jobs:
   #     sit_client_id: ${{ secrets.sit_client_id }}
   #     sit_secrets_id: ${{ secrets.sit_secrets_id }}
   #     tenant_id: ${{ secrets.tenant_id }}
+    
+  # download-upload-portal-data-sit-env:
+  #     needs: [ release-to-sit-env ]
+  #     uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_download_upload_portal_data_pipeline_to_sit_env.yml@master
+  #     secrets:
+  #       build_url: ${{ secrets.build_url }}
+  #       build_client_id: ${{ secrets.build_client_id }}
+  #       build_secrets_id: ${{ secrets.build_secrets_id }}
+  #       sit_url: ${{ secrets.sit_url }}
+  #       sit_client_id: ${{ secrets.sit_client_id }}
+  #       sit_secrets_id: ${{ secrets.sit_secrets_id }}
+  #       tenant_id: ${{ secrets.tenant_id }}  
       
-  # approval-to-deploy-to-data-migration-env:
-  #   needs: [ release-to-build-env ]
-  #   runs-on: ubuntu-latest
-  #   env:
-  #     RUNNER_DEBUG: 1
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #       with:
-  #         lfs: true
-          
-  #     - uses: trstringer/manual-approval@v1
-  #       with:
-  #         secret: ${{ github.TOKEN }}
-  #         approvers: trial-acc-rao,arvingers4
-  #         minimum-approvals: 1
-  #         issue-title: "release to data migration environment"
-
   # release-to-data-migration-env:
   #   strategy:
   #     max-parallel: 1
   #     matrix:
-  #       target: [EQL10WebResources]
-  #   needs: [ approval-to-deploy-to-data-migration-env ]
+  #       target: [EQL20Customizing]
+  #   needs: [ release-to-sit-env ]
   #   uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_release_pipeline_to_data_migration_env.yml@master
   #   with:
   #     solution_name: ${{ matrix.target }}
@@ -137,30 +108,13 @@ jobs:
   #     data_migration_client_id: ${{ secrets.data_migration_client_id }}
   #     data_migration_secrets_id: ${{ secrets.data_migration_secrets_id }}
   #     tenant_id: ${{ secrets.tenant_id }}
-      
-  # approval-to-deploy-to-uat-env:
-  #     needs: [ release-to-sit-env ]
-  #     runs-on: ubuntu-latest
-  #     env:
-  #       RUNNER_DEBUG: 1
-  #     steps:
-  #       - uses: actions/checkout@v3
-  #         with:
-  #           lfs: true
-
-  #       - uses: trstringer/manual-approval@v1
-  #         with:
-  #           secret: ${{ github.TOKEN }}
-  #           approvers: trial-acc-rao,arvingers4
-  #           minimum-approvals: 1
-  #           issue-title: "release to uat environment"
 
   # release-to-uat-env:
   #     strategy:
   #       max-parallel: 1
   #       matrix:
-  #         target: [EQL10WebResources]
-  #     needs: [ approval-to-deploy-to-uat-env ]
+  #         target: [EQL20Customizing]
+  #     needs: [ release-to-data-migration-env ]
   #     uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_release_pipeline_to_uat_env.yml@master
   #     with:
   #       solution_name: ${{ matrix.target }}
@@ -170,30 +124,13 @@ jobs:
   #       uat_client_id: ${{ secrets.uat_client_id }}
   #       uat_secrets_id: ${{ secrets.uat_secrets_id }}
   #       tenant_id: ${{ secrets.tenant_id }}
-
-  # approval-to-deploy-to-prod-env:
-  #     needs: [ release-to-uat-env ]
-  #     runs-on: ubuntu-latest
-  #     env:
-  #       RUNNER_DEBUG: 1
-  #     steps:
-  #       - uses: actions/checkout@v3
-  #         with:
-  #           lfs: true
-
-  #       - uses: trstringer/manual-approval@v1
-  #         with:
-  #           secret: ${{ github.TOKEN }}
-  #           approvers: trial-acc-rao,arvingers4
-  #           minimum-approvals: 1
-  #           issue-title: "release to uat environment"
   
   # release-to-prod-env:
   #     strategy:
   #       max-parallel: 1
   #       matrix:
-  #         target: [EQL10WebResources]
-  #     needs: [ approval-to-deploy-to-prod-env ]
+  #         target: [EQL20Customizing]
+  #     needs: [ release-to-uat-env ]
   #     uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_release_pipeline_to_prod_env.yml@master
   #     with:
   #       solution_name: ${{ matrix.target }}

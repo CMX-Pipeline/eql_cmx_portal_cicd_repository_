@@ -107,8 +107,7 @@ jobs:
         with:
           name: ${{ inputs.solution_name }}
           path: logs/${{ inputs.solution_name }}
-
-
+          
       - name: push check-solution logs to branch
         run: |
           git --version
