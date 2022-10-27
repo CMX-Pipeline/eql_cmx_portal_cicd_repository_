@@ -46,7 +46,23 @@ jobs:
         tenant-id: ${{ secrets.tenant_id }}
         download-path: ${{ secrets.dev_url }}
         website-id: 'dd7f978e-c24e-ed11-bba1-000d3a35cd77'
-        working-directory: logs/portaldata
+        working-directory: portaldata
+        
+    - name: push portal data to branch
+      run: |
+          git --version
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+          git fetch --no-tags --prune --depth=1 origin
+          git checkout develop
+          # mkdir ${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}/logs
+          copy portaldata ${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}/data
+          git add logs
+          git pull origin
+          git commit -m "Added Logs to branch"
+          git push
+      env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
     - name: Display structure of downloaded files
       run: ls -R
