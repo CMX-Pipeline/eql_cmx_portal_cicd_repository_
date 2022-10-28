@@ -51,7 +51,6 @@ jobs:
   download-upload-portal-data-build-env:
     needs: [ build, release-to-build-env ]
     uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_download_upload_portal_data_pipeline.yml@master
-    with:
     secrets:
       dev_url: ${{ secrets.dev_url }}
       dev_client_id: ${{ secrets.dev_client_id }}
