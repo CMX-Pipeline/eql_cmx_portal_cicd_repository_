@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml version="9.2.22092.190" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ImportExportXml version="9.2.22093.220" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SolutionManifest>
     <UniqueName>EQL20Customizing</UniqueName>
     <LocalizedNames>
       <LocalizedName description="EQL20Customizing" languagecode="1033" />
     </LocalizedNames>
     <Descriptions />
-    <Version>1.0.0.0</Version>
+    <Version>1.0.0.2</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>EQL</UniqueName>
@@ -79,9 +79,12 @@
     </Publisher>
     <RootComponents>
       <RootComponent type="1" schemaName="eql_electricalworkrequest" behavior="0" />
+      <RootComponent type="1" schemaName="eql_ewr" behavior="0" />
       <RootComponent type="1" schemaName="eql_ewrserviceselection" behavior="0" />
       <RootComponent type="1" schemaName="eql_primaryserviceselection" behavior="0" />
+      <RootComponent type="1" schemaName="eql_secondaryserviceselection" behavior="0" />
       <RootComponent type="1" schemaName="eql_selection" behavior="0" />
+      <RootComponent type="61" schemaName="eql_rftd" behavior="0" />
       <RootComponent type="62" schemaName="eql_EQLSampleMDA" behavior="0" />
       <RootComponent type="80" schemaName="eql_EQLSampleMDA" behavior="0" />
     </RootComponents>
