@@ -65,6 +65,7 @@ jobs:
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
           git fetch --no-tags --prune --depth=1 origin
+          git stash --include-untracked
           git checkout develop
           git add portaldata
           git pull origin
