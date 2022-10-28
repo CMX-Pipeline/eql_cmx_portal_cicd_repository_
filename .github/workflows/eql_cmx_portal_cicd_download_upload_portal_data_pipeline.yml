@@ -70,6 +70,8 @@ jobs:
           git stash
           git checkout develop
           git stash pop
+          git add portaldata
+          git commit -m "Added portaldata to branch"
           git push
       env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
