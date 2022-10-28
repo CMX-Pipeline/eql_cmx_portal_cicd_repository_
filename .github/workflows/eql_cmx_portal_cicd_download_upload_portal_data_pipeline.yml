@@ -66,10 +66,9 @@ jobs:
           git config user.email "<>"
           git fetch --no-tags --prune --depth=1 origin
           git stash --include-untracked
-          git checkout develop
-          git add portaldata
+          git checkout develop portaldata
           git pull origin
-          git commit -m "Added Logs to branch"
+          git commit -m "Added portaldata to branch"
           git push
       env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
