@@ -65,6 +65,8 @@ jobs:
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
           git fetch
+          git status
+          git add portaldata
           git stash
           git checkout develop
           git stash pop
