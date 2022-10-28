@@ -66,19 +66,6 @@ jobs:
     - name: Display structure of downloaded files
       run: ls -R
         
-
-  upload-portal-data-to-build-env:
-    needs: [ download-portal-data-from-dev-env ]
-    runs-on:  ubuntu-latest
-    environment: build
-    env:
-      RUNNER_DEBUG: 1
-    steps:
-    - uses: actions/checkout@v3
-      with:
-        lfs: true
-        ref: develop
-        
     - name: upload-paportal
       uses: microsoft/powerplatform-actions/upload-paportal@v0
       with:
