@@ -66,10 +66,11 @@ jobs:
           git config user.email "<>"
           git fetch
           git status
-          git stash --include-untracked
+          git add portaldata/
+          git stash 
           git checkout develop
           git stash pop
-          git add portaldata
+          git add portaldata/
           git commit -m "Added portaldata to branch"
           git push
       env:
