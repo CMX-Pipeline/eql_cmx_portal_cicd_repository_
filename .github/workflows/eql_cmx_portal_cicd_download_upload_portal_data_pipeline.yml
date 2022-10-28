@@ -66,11 +66,9 @@ jobs:
           git config user.email "<>"
           git fetch
           git add portaldata
-          git commit -m "Added portaldata to branch"
           git stash
           git checkout develop
           git stash pop
-          git add portaldata
           git commit -m "Added portaldata to branch"
           git push
       env:
