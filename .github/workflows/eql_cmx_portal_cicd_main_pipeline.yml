@@ -53,7 +53,7 @@ jobs:
   download-upload-portal-data-build-env:
     # needs: [ build, release-to-build-env ]
     uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_download_upload_portal_data_pipeline.yml@abai
-    with:
+    # with:
       # solution_name: portalsolution
       # solution_target_folder: solutions/
     secrets:
