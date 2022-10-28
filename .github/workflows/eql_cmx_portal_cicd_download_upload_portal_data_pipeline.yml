@@ -64,11 +64,12 @@ jobs:
           git --version
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
-          git fetch --no-tags --prune --depth=1 origin
-          git stash --include-untracked
-          git checkout develop portaldata
-          git pull origin
+          git fetch
+          git add portaldata
           git commit -m "Added portaldata to branch"
+          git stash
+          git checkout develop
+          git stash pop
           git push
       env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
