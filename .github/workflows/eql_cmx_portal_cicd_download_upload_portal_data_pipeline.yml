@@ -76,7 +76,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       with:
-        lfs: true        
+        lfs: true
+        ref: develop
+        
     - name: upload-paportal
       uses: microsoft/powerplatform-actions/upload-paportal@v0
       with:
