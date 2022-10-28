@@ -66,6 +66,27 @@ jobs:
     - name: Display structure of downloaded files
       run: ls -R
         
+
+  upload-portal-data-to-build-env:
+    needs: [ download-portal-data-from-dev-env ]
+    runs-on:  ubuntu-latest
+    environment: build
+    env:
+      RUNNER_DEBUG: 1
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        lfs: true
+        ref: develop
+  
+    - name: push portal data to branch
+      run: |
+          ls -d */
+          
+      env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+
     - name: upload-paportal
       uses: microsoft/powerplatform-actions/upload-paportal@v0
       with:
@@ -73,4 +94,4 @@ jobs:
         app-id: ${{ secrets.build_client_id }}
         client-secret: ${{ secrets.build_secrets_id }}
         tenant-id: ${{ secrets.tenant_id }}
-        upload-path: portaldata
+        upload-path: portaldata/eql-trial-portal---acntrialportal
