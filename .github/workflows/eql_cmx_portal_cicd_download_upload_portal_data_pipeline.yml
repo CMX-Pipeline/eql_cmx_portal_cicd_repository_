@@ -47,6 +47,7 @@ jobs:
     - uses: actions/checkout@v3
       with:
         lfs: true
+        ref: develop
         
     - name: download-paportal
       uses: microsoft/powerplatform-actions/download-paportal@v0
@@ -65,10 +66,7 @@ jobs:
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
           git status
-          git add .
-          git stash 
-          git checkout develop
-          git stash pop
+          git pull origin
           git add portaldata
           git commit -m "Added portaldata to branch"
           git push
