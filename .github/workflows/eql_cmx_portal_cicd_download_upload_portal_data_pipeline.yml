@@ -95,3 +95,10 @@ jobs:
         client-secret: ${{ secrets.build_secrets_id }}
         tenant-id: ${{ secrets.tenant_id }}
         upload-path: portaldata/eql-trial-portal---acntrialportal
+        
+        
+    - name: Upload the ready to ship portal-data to GH artifact store
+      uses: actions/upload-artifact@v2
+      with:
+        name: build-portaldata
+        path: portaldata/eql-trial-portal---acntrialportal
