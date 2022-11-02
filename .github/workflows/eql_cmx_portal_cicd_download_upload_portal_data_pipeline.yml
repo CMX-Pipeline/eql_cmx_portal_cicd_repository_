@@ -68,7 +68,6 @@ jobs:
         
 
   upload-portal-data-to-build-env:
-    needs: [ download-portal-data-from-dev-env ]
     runs-on:  ubuntu-latest
     environment: build
     env:
