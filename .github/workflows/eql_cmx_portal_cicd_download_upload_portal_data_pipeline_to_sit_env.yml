@@ -50,6 +50,7 @@ jobs:
         
 
   upload-portal-data-to-sit-env:
+    needs: [ download-portal-data-from-build-env ]
     runs-on:  ubuntu-latest
     environment: sit
     env:
