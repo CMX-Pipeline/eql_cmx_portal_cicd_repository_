@@ -119,6 +119,15 @@ jobs:
         uat_client_id: ${{ secrets.uat_client_id }}
         uat_secrets_id: ${{ secrets.uat_secrets_id }}
         tenant_id: ${{ secrets.tenant_id }}
+        
+  upload-portal-data-uat-env:
+      needs: [ release-to-uat-env ]
+      uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_upload_portal_data_pipeline_to_uat_env.yml@master
+      secrets:
+        uat_url: ${{ secrets.uat_url }}
+        uat_client_id: ${{ secrets.uat_client_id }}
+        uat_secrets_id: ${{ secrets.uat_secrets_id }}
+        tenant_id: ${{ secrets.tenant_id }}
   
   release-to-prod-env:
       strategy:
@@ -130,6 +139,15 @@ jobs:
       with:
         solution_name: ${{ matrix.target }}
         solution_release_folder: out/release
+      secrets:
+        prod_url: ${{ secrets.prod_url }}
+        prod_client_id: ${{ secrets.prod_client_id }}
+        prod_secrets_id: ${{ secrets.prod_secrets_id }}
+        tenant_id: ${{ secrets.tenant_id }}
+
+  upload-portal-data-prod-env:
+      needs: [ release-to-prod-env ]
+      uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_upload_portal_data_pipeline_to_prod_env.yml@master
       secrets:
         prod_url: ${{ secrets.prod_url }}
         prod_client_id: ${{ secrets.prod_client_id }}
