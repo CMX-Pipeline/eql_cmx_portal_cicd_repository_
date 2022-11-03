@@ -93,7 +93,7 @@ jobs:
       max-parallel: 1
       matrix:
         target: [EQL20Customizing]
-    needs: [ release-to-sit-env ]
+    needs: [ release-to-build-env ]
     uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_release_pipeline_to_data_migration_env.yml@master
     with:
       solution_name: ${{ matrix.target }}
@@ -109,11 +109,20 @@ jobs:
         max-parallel: 1
         matrix:
           target: [EQL20Customizing]
-      needs: [ release-to-data-migration-env ]
+      needs: [ release-to-sit-env ]
       uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_release_pipeline_to_uat_env.yml@master
       with:
         solution_name: ${{ matrix.target }}
         solution_release_folder: out/release
+      secrets:
+        uat_url: ${{ secrets.uat_url }}
+        uat_client_id: ${{ secrets.uat_client_id }}
+        uat_secrets_id: ${{ secrets.uat_secrets_id }}
+        tenant_id: ${{ secrets.tenant_id }}
+        
+  upload-portal-data-uat-env:
+      needs: [ release-to-uat-env ]
+      uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_upload_portal_data_pipeline_to_uat_env.yml@master
       secrets:
         uat_url: ${{ secrets.uat_url }}
         uat_client_id: ${{ secrets.uat_client_id }}
@@ -130,6 +139,15 @@ jobs:
       with:
         solution_name: ${{ matrix.target }}
         solution_release_folder: out/release
+      secrets:
+        prod_url: ${{ secrets.prod_url }}
+        prod_client_id: ${{ secrets.prod_client_id }}
+        prod_secrets_id: ${{ secrets.prod_secrets_id }}
+        tenant_id: ${{ secrets.tenant_id }}
+
+  upload-portal-data-prod-env:
+      needs: [ release-to-prod-env ]
+      uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_upload_portal_data_pipeline_to_prod_env.yml@master
       secrets:
         prod_url: ${{ secrets.prod_url }}
         prod_client_id: ${{ secrets.prod_client_id }}
