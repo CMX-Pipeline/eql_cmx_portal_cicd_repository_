@@ -109,7 +109,7 @@ jobs:
         max-parallel: 1
         matrix:
           target: [EQL20Customizing]
-      needs: [ release-to-data-migration-env ]
+      needs: [ release-to-sit-env ]
       uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_release_pipeline_to_uat_env.yml@master
       with:
         solution_name: ${{ matrix.target }}
