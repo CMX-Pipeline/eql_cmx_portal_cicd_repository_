@@ -22,7 +22,7 @@ jobs:
         
   upload-portal-data-to-uat-env:
     runs-on:  ubuntu-latest
-    environment: sit
+    environment: uat
     env:
       RUNNER_DEBUG: 1
     steps:
