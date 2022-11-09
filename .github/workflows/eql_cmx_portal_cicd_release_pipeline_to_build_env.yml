@@ -76,14 +76,15 @@ jobs:
         force-overwrite: true
         publish-changes: true
 
-    - name: Upgrade Solution Version
+    - name: Update Solution Version
       uses: microsoft/powerplatform-actions/update-solution-version@v0
       with:
         environment-url: ${{ secrets.build_url }}
         app-id: ${{ secrets.build_client_id }}
         client-secret: ${{ secrets.build_secrets_id }}
         tenant-id: ${{ secrets.tenant_id }}
-
+        strategy: solution
+        
     - name: export solution as managed from buid env
       uses: microsoft/powerplatform-actions/export-solution@v0
       with:
