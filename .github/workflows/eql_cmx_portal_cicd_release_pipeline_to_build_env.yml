@@ -76,6 +76,9 @@ jobs:
         force-overwrite: true
         publish-changes: true
 
+    - name: Upgrade Solution Version
+      uses: microsoft/powerplatform-actions/update-solution-version@v0
+
     - name: export solution as managed from buid env
       uses: microsoft/powerplatform-actions/export-solution@v0
       with:
