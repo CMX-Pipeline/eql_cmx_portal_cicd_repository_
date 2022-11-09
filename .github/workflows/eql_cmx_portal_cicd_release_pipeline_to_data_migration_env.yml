@@ -45,7 +45,7 @@ jobs:
         name: ${{ inputs.solution_name }}
         path: ${{ inputs.solution_release_folder}}
         
-    - name: Import solution to sit env
+    - name: Import solution to data migration env
       uses: microsoft/powerplatform-actions/import-solution@v0
       with:
         environment-url: ${{ secrets.data_migration_url }}
