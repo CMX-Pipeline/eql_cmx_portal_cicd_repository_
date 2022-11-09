@@ -83,6 +83,7 @@ jobs:
         app-id: ${{ secrets.build_client_id }}
         client-secret: ${{ secrets.build_secrets_id }}
         tenant-id: ${{ secrets.tenant_id }}
+        solution-name: ${{ inputs.solution_name }}
 
     - name: export solution as managed from buid env
       uses: microsoft/powerplatform-actions/export-solution@v0
