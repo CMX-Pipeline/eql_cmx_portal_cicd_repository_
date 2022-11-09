@@ -57,7 +57,7 @@ jobs:
   upload-portal-data-to-sit-env:
     needs: [ download-portal-data-from-build-env ]
     runs-on:  ubuntu-latest
-    # environment: sit
+    environment: sit
     env:
       RUNNER_DEBUG: 1
     steps:
