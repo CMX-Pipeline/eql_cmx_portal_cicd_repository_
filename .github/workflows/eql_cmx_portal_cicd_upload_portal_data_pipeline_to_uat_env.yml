@@ -34,6 +34,7 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: build-portaldata
+        path: portaldata/eql-trial-portal---acntrialportal
     
     - name: upload-paportal
       uses: microsoft/powerplatform-actions/upload-paportal@v0
@@ -42,4 +43,4 @@ jobs:
         app-id: ${{ secrets.uat_client_id }}
         client-secret: ${{ secrets.uat_secrets_id }}
         tenant-id: ${{ secrets.tenant_id }}
-        upload-path: build-portaldata
+        upload-path: portaldata/eql-trial-portal---acntrialportal     
