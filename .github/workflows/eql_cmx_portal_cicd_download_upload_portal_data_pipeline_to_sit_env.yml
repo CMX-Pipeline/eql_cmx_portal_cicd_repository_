@@ -70,6 +70,12 @@ jobs:
       with:
         name: build-portaldata
 
+    - name: Display List of Directories
+      run: |
+          ls -d */
+      env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          
     - name: upload-paportal
       uses: microsoft/powerplatform-actions/upload-paportal@v0
       with:
