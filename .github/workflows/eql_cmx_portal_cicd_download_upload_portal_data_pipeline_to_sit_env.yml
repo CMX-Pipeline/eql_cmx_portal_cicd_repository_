@@ -57,7 +57,7 @@ jobs:
   upload-portal-data-to-sit-env:
     needs: [ download-portal-data-from-build-env ]
     runs-on:  ubuntu-latest
-    environment: sit
+    # environment: sit
     env:
       RUNNER_DEBUG: 1
     steps:
@@ -69,13 +69,14 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: build-portaldata
+        path: portaldata
 
     - name: Display List of Directories
       run: |
           ls -d */
       env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          
+
     - name: upload-paportal
       uses: microsoft/powerplatform-actions/upload-paportal@v0
       with:
@@ -83,4 +84,4 @@ jobs:
         app-id: ${{ secrets.sit_client_id }}
         client-secret: ${{ secrets.sit_secrets_id }}
         tenant-id: ${{ secrets.tenant_id }}
-        upload-path: build-portaldata      
+        upload-path: portaldata
