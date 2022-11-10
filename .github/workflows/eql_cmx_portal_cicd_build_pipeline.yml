@@ -83,7 +83,7 @@ jobs:
           solution-type: 'Unmanaged'
           overwrite-files: true
 
-      - name: update slution version
+      - name: update solution version
         shell: pwsh
         run: |
           [xml]$XmlDocument = Get-Content -Path ${{ inputs.solution_folder}}/${{ inputs.solution_name }}/Other/Solution.xml
@@ -106,6 +106,10 @@ jobs:
     
       - name: create pull request
         run: |
+          git status
+          git add .
+          git commit -m "Updated solution Version"
+          git push 
           git pull origin develop
           gh pr create -B develop -H ${{ inputs.branch_name }}-${{ inputs.solution_name }} --title 'Merge ${{ inputs.branch_name }} into develop' --body 'Created by Github action'
         env:
