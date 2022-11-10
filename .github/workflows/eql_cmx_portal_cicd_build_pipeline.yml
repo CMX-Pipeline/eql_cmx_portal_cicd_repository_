@@ -83,7 +83,7 @@ jobs:
           solution-type: 'Unmanaged'
           overwrite-files: true
 
-      - name: ipdate slution version
+      - name: update slution version
         shell: pwsh
         run: |
           [xml]$XmlDocument = Get-Content -Path ${{ inputs.solution_folder}}/${{ inputs.solution_name }}/Other/Solution.xml
@@ -110,7 +110,9 @@ jobs:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: merge pull requests
-        run: gh pr merge --admin --merge ${{ inputs.branch_name }}-${{ inputs.solution_name }}
+        run: |
+          git fetch origin develop
+          gh pr merge --admin --merge ${{ inputs.branch_name }}-${{ inputs.solution_name }}
         env:
             GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
             
