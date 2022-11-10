@@ -124,8 +124,8 @@ jobs:
 
       - name: merge pull request
         run: |
-          prnumber=$(gh pr list --head ${{ inputs.branch_name }}-${{ inputs.solution_name }})  
-          gh pr checkout $(prnumber) && git fetch origin develop && git merge origin/develop
+          output=$(gh pr list --head ${{ inputs.branch_name }}-${{ inputs.solution_name }})  
+          gh pr checkout $(output) && git fetch origin develop && git merge origin/develop
         env:
             GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
             
