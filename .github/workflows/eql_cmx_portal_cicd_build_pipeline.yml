@@ -111,8 +111,8 @@ jobs:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: merge pull requests
-        run: |
-          gh pr merge --admin --merge ${{ inputs.branch_name }}-${{ inputs.solution_name }} --strategy-option theirs
+        run: |          
+          gh pr merge --admin --merge ${{ inputs.branch_name }}-${{ inputs.solution_name }} --disable-auto
         env:
             GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
             
