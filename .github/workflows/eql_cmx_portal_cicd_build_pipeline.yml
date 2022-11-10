@@ -105,13 +105,14 @@ jobs:
           branch-name: ${{ inputs.branch_name }}-${{ inputs.solution_name }}
     
       - name: create pull request
-        run: gh pr create -B develop -H ${{ inputs.branch_name }}-${{ inputs.solution_name }} --title 'Merge ${{ inputs.branch_name }} into develop' --body 'Created by Github action'
+        run: |
+          git pull origin develop
+          gh pr create -B develop -H ${{ inputs.branch_name }}-${{ inputs.solution_name }} --title 'Merge ${{ inputs.branch_name }} into develop' --body 'Created by Github action'
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: merge pull requests
         run: |
-          git fetch origin develop
           gh pr merge --admin --merge ${{ inputs.branch_name }}-${{ inputs.solution_name }}
         env:
             GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
