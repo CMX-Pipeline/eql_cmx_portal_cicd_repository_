@@ -79,10 +79,9 @@ jobs:
         lfs: true
         ref: develop
   
-    - name: push portal data to branch
+    - name: Display List of Directories
       run: |
           ls -d */
-          
       env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
@@ -95,3 +94,4 @@ jobs:
         client-secret: ${{ secrets.build_secrets_id }}
         tenant-id: ${{ secrets.tenant_id }}
         upload-path: portaldata/eql-trial-portal---acntrialportal
+        

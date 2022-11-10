@@ -74,7 +74,7 @@ jobs:
           tenant-id: ${{ secrets.tenant_id }}
           path: ${{ inputs.solution_exported_folder}}/${{ inputs.solution_name }}.zip
           checker-logs-artifact-name: ${{ inputs.solution_name }}
-        
+
       - name: unpack solution
         uses: microsoft/powerplatform-actions/unpack-solution@v0
         with:
@@ -82,6 +82,17 @@ jobs:
           solution-folder: ${{ inputs.solution_folder}}/${{ inputs.solution_name }}
           solution-type: 'Unmanaged'
           overwrite-files: true
+
+      - name: push check-solution logs to branch
+        run: |
+          cd ${{ inputs.solution_folder}}${{ inputs.solution_name }}/Other
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Update Solution Version
+        uses: Mudlet/xmlstarlet-action@master
+        with:
+          args: ed --inplace -u "/ImportExportXml/SolutionManifest/Version" -v 1.0.0.1 Solution.xml        
 
       - name: branch solution
         uses: microsoft/powerplatform-actions/branch-solution@v0
