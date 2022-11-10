@@ -83,7 +83,7 @@ jobs:
           solution-type: 'Unmanaged'
           overwrite-files: true
 
-      - name: go to solution xml file
+      - name: Update Solution Version
         shell: pwsh
         run: |
           [xml]$XmlDocument = Get-Content -Path ${{ inputs.solution_folder}}/${{ inputs.solution_name }}/Other/Solution.xml
