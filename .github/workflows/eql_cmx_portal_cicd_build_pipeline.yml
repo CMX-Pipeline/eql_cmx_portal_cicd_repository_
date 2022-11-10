@@ -83,7 +83,7 @@ jobs:
           solution-type: 'Unmanaged'
           overwrite-files: true
 
-      - name: push check-solution logs to branch
+      - name: go to solution xml file
         run: |
           cd ${{ inputs.solution_folder}}${{ inputs.solution_name }}/Other
         env:
