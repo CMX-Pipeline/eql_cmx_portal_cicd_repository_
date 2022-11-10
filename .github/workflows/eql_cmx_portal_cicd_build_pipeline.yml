@@ -83,6 +83,18 @@ jobs:
           solution-type: 'Unmanaged'
           overwrite-files: true
 
+      - name: update solution version
+        shell: pwsh
+        run: |
+          [xml]$XmlDocument = Get-Content -Path ${{ inputs.solution_folder}}/${{ inputs.solution_name }}/Other/Solution.xml
+          $OldVersion = $XmlDocument.GetElementsByTagName('Version')
+          [version]$Version = $OldVersion[0].'#text' 
+          [version]$NewVersion = "{0}.{1}.{2}.{3}" -f $Version.Major, $Version.Minor, ($Version.Build + 1), $Version.Revision
+          $OldVersion[0].'#text'  = $NewVersion.ToString()
+          $XmlDocument.Save('${{ inputs.solution_folder}}/${{ inputs.solution_name }}/Other/Solution.xml')
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
       - name: branch solution
         uses: microsoft/powerplatform-actions/branch-solution@v0
         with:
@@ -91,14 +103,31 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           allow-empty-commit: true
           branch-name: ${{ inputs.branch_name }}-${{ inputs.solution_name }}
-    
+
+      - name: fetch develop branch
+        run: |
+          git --version
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+          git config --system core.longpaths true
+          git fetch --no-tags --prune --depth=1 origin
+          git checkout ${{ inputs.branch_name }}-${{ inputs.solution_name }}
+          git pull origin develop --allow-unrelated-histories --strategy-option ours
+          git commit -m "Merge with develop branch"
+          git push
+
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: create pull request
-        run: gh pr create -B develop -H ${{ inputs.branch_name }}-${{ inputs.solution_name }} --title 'Merge ${{ inputs.branch_name }} into develop' --body 'Created by Github action'
+        run: |
+          gh pr create -B develop -H ${{ inputs.branch_name }}-${{ inputs.solution_name }} --title 'Merge ${{ inputs.branch_name }} into develop' --body 'Created by Github action'
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: merge pull requests
-        run: gh pr merge --admin --merge ${{ inputs.branch_name }}-${{ inputs.solution_name }}
+        run: |          
+          gh pr merge --admin --merge ${{ inputs.branch_name }}-${{ inputs.solution_name }}
         env:
             GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
             
