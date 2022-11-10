@@ -51,6 +51,16 @@ jobs:
     env:
       RUNNER_DEBUG: 1
     steps:
+
+      - name: git config to accept long paths
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+          git config --system core.longpaths true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
       - uses: actions/checkout@v3
         with:
           lfs: true

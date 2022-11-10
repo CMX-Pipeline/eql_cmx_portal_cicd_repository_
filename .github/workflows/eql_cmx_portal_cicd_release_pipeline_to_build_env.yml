@@ -54,7 +54,7 @@ jobs:
       RUNNER_DEBUG: 1
     steps:
 
-    - name: fetch develop branch
+    - name: git config to accept long paths
       run: |
         git config user.name "GitHub Actions Bot"
         git config user.email "<>"
