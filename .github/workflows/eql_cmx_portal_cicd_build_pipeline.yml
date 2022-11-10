@@ -93,6 +93,10 @@ jobs:
       - name: Update Solution Version
         uses: microsoft/powerplatform-actions/update-solution-version@v0
         with:
+          environment-url: ${{ secrets.dev_url }}
+          app-id: ${{ secrets.dev_client_id }}
+          client-secret: ${{ secrets.dev_secrets_id }}
+          tenant-id: ${{ secrets.tenant_id }}
           patch-version: 1
 
       - name: branch solution
