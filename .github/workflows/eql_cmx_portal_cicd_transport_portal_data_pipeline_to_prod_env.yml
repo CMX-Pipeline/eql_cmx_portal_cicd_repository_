@@ -1,4 +1,4 @@
-name: eql_cmx_portal_cicd_upload_portal_data_pipeline_to_prod_env.yml
+name: eql_cmx_portal_cicd_transport_portal_data_pipeline_to_prod_env.yml
 # prepare for releasing to prod:
 
 on:
