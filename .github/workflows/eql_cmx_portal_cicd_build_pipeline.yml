@@ -112,7 +112,7 @@ jobs:
           git config --system core.longpaths true
           git fetch --no-tags --prune --depth=1 origin
           git checkout ${{ inputs.branch_name }}-${{ inputs.solution_name }}
-          git pull origin develop --allow-unrelated-histories
+          git pull origin develop --allow-unrelated-histories --strategy-option ours
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
