@@ -106,21 +106,13 @@ jobs:
     
       - name: create pull request
         run: |
-          git config user.name "GitHub Actions Bot"
-          git config user.email "<>"
-          git checkout ${{ inputs.branch_name }}-${{ inputs.solution_name }}
-          git pull origin develop
-          git status
-          git add .
-          git commit -m "Updated solution Version"
-          git push 
           gh pr create -B develop -H ${{ inputs.branch_name }}-${{ inputs.solution_name }} --title 'Merge ${{ inputs.branch_name }} into develop' --body 'Created by Github action'
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: merge pull requests
         run: |
-          gh pr merge --admin --merge ${{ inputs.branch_name }}-${{ inputs.solution_name }}
+          gh pr merge --admin --merge ${{ inputs.branch_name }}-${{ inputs.solution_name }} --strategy-option theirs
         env:
             GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
             
