@@ -752,7 +752,6 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <LookupStyle>single</LookupStyle>
           <LookupTypes />
           <displaynames>
             <displayname description="Organization Id" languagecode="1033" />
@@ -1061,6 +1060,7 @@
       <ChangeTrackingEnabled>0</ChangeTrackingEnabled>
       <CanChangeTrackingBeEnabled>1</CanChangeTrackingBeEnabled>
       <IsEnabledForExternalChannels>0</IsEnabledForExternalChannels>
+      <IsChildEntity>0</IsChildEntity>
       <IsSolutionAware>0</IsSolutionAware>
       <HasRelatedNotes>True</HasRelatedNotes>
     </entity>
