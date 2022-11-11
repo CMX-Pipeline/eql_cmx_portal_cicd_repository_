@@ -16,7 +16,8 @@ jobs:
     strategy:
       max-parallel: 1
       matrix:
-        target: [EQL10WebResources, EQL20Customizing, EQL30Plugins, EQL40Workflows, EQL50Flows, EQL60Templates]
+        target: [EQL10WebResources, EQL20Customizing, EQL30Plugins]
+        environment: [sit]             
     uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_export_from_dev_pipeline.yml@abai
     with:      
       solution_name: ${{ matrix.target }}
@@ -66,7 +67,7 @@ jobs:
     strategy:
       max-parallel: 1
       matrix:
-        target: [EQL10WebResources, EQL20Customizing, EQL30Plugins, EQL40Workflows, EQL50Flows, EQL60Templates]
+        target: [EQL10WebResources, EQL20Customizing, EQL30Plugins]
         environment: [sit]             
     needs: [ release-to-build-env ]
     uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_release_pipeline_to_sit_env.yml@abai
