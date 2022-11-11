@@ -17,7 +17,7 @@ jobs:
       max-parallel: 1
       matrix:
         target: [EQL10WebResources, EQL20Customizing, EQL30Plugins]
-        environment: [sit]             
+        environment: [UAT]             
     uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_export_from_dev_pipeline.yml@abai
     with:      
       solution_name: ${{ matrix.target }}
@@ -28,7 +28,7 @@ jobs:
     secrets: 
       dev_url: ${{ secrets.dev_url }}
       dev_client_id: ${{ secrets.dev_client_id }}
-      tenant_id: ${{ secrets.tenant_id }}  
+      tenant_id: ${{ secrets.tenant_id }}
       dev_secrets_id: ${{ secrets.dev_secrets_id }}
           
   release-to-build-env:
