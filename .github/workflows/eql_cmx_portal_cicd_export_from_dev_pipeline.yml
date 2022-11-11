@@ -1,4 +1,4 @@
-name: export-and-branch-solution
+name: eql_cmx_portal_cicd_export_from_dev_pipeline.yml
 # Export solution from DEV environment
 #  unpack it and prepare, commit and push a git branch with the changes
 
