@@ -1,4 +1,4 @@
-name: eql_cmx_portal_cicd_download_upload_portal_data_pipeline_to_sit_env
+name: eql_cmx_portal_cicd_transport_portal_data_pipeline_to_sit_env.yml
 
 on:
   workflow_call :
