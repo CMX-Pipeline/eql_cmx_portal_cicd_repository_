@@ -15,7 +15,7 @@ jobs:
       max-parallel: 1
       matrix:
         target: [EQL20Customizing]
-    uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_build_pipeline.yml@main
+    uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_export_from_dev_pipeline.yml@main
     with:      
       solution_name: ${{ matrix.target }}
       branch_name: solution
@@ -50,7 +50,7 @@ jobs:
   
   download-upload-portal-data-build-env:
     needs: [ release-to-build-env ]
-    uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_download_upload_portal_data_pipeline.yml@main
+    uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_transport_portal_data_pipeline_to_build_env.yml@main
     secrets:
       dev_url: ${{ secrets.dev_url }}
       dev_client_id: ${{ secrets.dev_client_id }}
@@ -78,7 +78,7 @@ jobs:
     
   download-upload-portal-data-sit-env:
       needs: [ release-to-sit-env ]
-      uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_download_upload_portal_data_pipeline_to_sit_env.yml@main
+      uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_transport_portal_data_pipeline_to_sit_env.yml@main
       secrets:
         build_url: ${{ secrets.build_url }}
         build_client_id: ${{ secrets.build_client_id }}
@@ -122,7 +122,7 @@ jobs:
         
   upload-portal-data-uat-env:
       needs: [ release-to-uat-env ]
-      uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_upload_portal_data_pipeline_to_uat_env.yml@main
+      uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_transport_portal_data_pipeline_to_uat_env.yml@main
       secrets:
         uat_url: ${{ secrets.uat_url }}
         uat_client_id: ${{ secrets.uat_client_id }}
@@ -147,7 +147,7 @@ jobs:
 
   upload-portal-data-prod-env:
       needs: [ release-to-prod-env ]
-      uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_upload_portal_data_pipeline_to_prod_env.yml@main
+      uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_transport_portal_data_pipeline_to_prod_env.yml@main
       secrets:
         prod_url: ${{ secrets.prod_url }}
         prod_client_id: ${{ secrets.prod_client_id }}
