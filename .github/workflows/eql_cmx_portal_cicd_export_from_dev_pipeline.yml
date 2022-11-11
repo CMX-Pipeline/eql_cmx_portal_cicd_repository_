@@ -46,7 +46,7 @@ on:
 
 jobs:
   export-from-dev:
-    environment: dev    
+    # environment: dev    
     runs-on: windows-latest
     env:
       RUNNER_DEBUG: 1
