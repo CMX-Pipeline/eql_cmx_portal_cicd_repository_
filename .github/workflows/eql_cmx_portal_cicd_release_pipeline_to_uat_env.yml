@@ -1,4 +1,4 @@
-name: eql_cmx_portal_cicd_release_pipeline_to_uat_environment
+name: eql_cmx_portal_cicd_release_pipeline_to_uat_env.yml
 # prepare for releasing to uat:
 
 on:
@@ -35,6 +35,15 @@ jobs:
       env:
         RUNNER_DEBUG: 1
       steps:
+
+      - name: git config to accept long paths
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+          git config --system core.longpaths true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - uses: actions/checkout@v2
         with:
           lfs: true

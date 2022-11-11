@@ -14,7 +14,16 @@
         <Titles>
           <Title LCID="1033" Title="Request" />
         </Titles>
-        <SubArea Id="subarea_83ae5201" Icon="/_imgs/imagestrips/transparent_spacer.gif" Entity="eql_ewr" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA" />
+        <SubArea Id="subarea_d400c3c2" Icon="/_imgs/imagestrips/transparent_spacer.gif" Entity="eql_electricalworkrequest" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA">
+          <Titles>
+            <Title LCID="1033" Title="Electrical Work Request" />
+          </Titles>
+        </SubArea>
+        <SubArea Id="subarea_85eedf70" Icon="/_imgs/imagestrips/transparent_spacer.gif" Entity="eql_ewrserviceselection" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA">
+          <Titles>
+            <Title LCID="1033" Title="Service Selection" />
+          </Titles>
+        </SubArea>
       </Group>
     </Area>
   </SiteMap>

@@ -10,7 +10,9 @@
   <ClientType>4</ClientType>
   <NavigationType>0</NavigationType>
   <AppModuleComponents>
-    <AppModuleComponent type="1" schemaName="eql_ewr" />
+    <AppModuleComponent type="1" schemaName="eql_selection" />
+    <AppModuleComponent type="1" schemaName="eql_electricalworkrequest" />
+    <AppModuleComponent type="1" schemaName="eql_ewrserviceselection" />
     <AppModuleComponent type="62" schemaName="eql_EQLSampleMDA" />
   </AppModuleComponents>
   <AppModuleRoleMaps>
