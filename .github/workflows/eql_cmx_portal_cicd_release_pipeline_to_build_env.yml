@@ -1,4 +1,4 @@
-name: eql_cmx_portal_cicd_release_pipeline
+name: eql_cmx_portal_cicd_release_pipeline_to_build_env.yml
 # prepare for releasing to prod:
 #   convert solution to managed (using a build PowerPlatform environment for the conversion)
 #   upload the solution to the GitHub artifacts and deploy to the PROD environment
@@ -53,6 +53,15 @@ jobs:
     env:
       RUNNER_DEBUG: 1
     steps:
+
+    - name: git config to accept long paths
+      run: |
+        git config user.name "GitHub Actions Bot"
+        git config user.email "<>"
+        git config --system core.longpaths true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     - uses: actions/checkout@v2
       with:
         lfs: true

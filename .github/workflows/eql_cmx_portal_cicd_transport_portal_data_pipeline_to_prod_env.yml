@@ -1,15 +1,16 @@
-name: eql_cmx_portal_cicd_upload_portal_data_pipeline_to_uat_env
+name: eql_cmx_portal_cicd_transport_portal_data_pipeline_to_prod_env.yml
+# prepare for releasing to prod:
 
 on:
   workflow_call :
     secrets:
-      uat_url:
+      prod_url:
         description: 'portal_data environment url.'
         required: true      
-      uat_client_id:
+      prod_client_id:
         description: 'The portal_data client id'
         required: true
-      uat_secrets_id:
+      prod_secrets_id:
         description: 'The secret value for authentication for portal_data'
         required: true
       tenant_id: 
@@ -22,7 +23,7 @@ jobs:
         
   upload-portal-data-to-uat-env:
     runs-on:  ubuntu-latest
-    environment: uat
+    environment: prod
     env:
       RUNNER_DEBUG: 1
     steps:
@@ -39,8 +40,8 @@ jobs:
     - name: upload-paportal
       uses: microsoft/powerplatform-actions/upload-paportal@v0
       with:
-        environment-url: ${{ secrets.uat_url }}
-        app-id: ${{ secrets.uat_client_id }}
-        client-secret: ${{ secrets.uat_secrets_id }}
+        environment-url: ${{ secrets.prod_url }}
+        app-id: ${{ secrets.prod_client_id }}
+        client-secret: ${{ secrets.prod_secrets_id }}
         tenant-id: ${{ secrets.tenant_id }}
         upload-path: portaldata  

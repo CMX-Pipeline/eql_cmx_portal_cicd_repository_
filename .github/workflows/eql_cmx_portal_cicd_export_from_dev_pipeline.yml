@@ -1,4 +1,4 @@
-name: export-and-branch-solution
+name: eql_cmx_portal_cicd_export_from_dev_pipeline.yml
 # Export solution from DEV environment
 #  unpack it and prepare, commit and push a git branch with the changes
 
@@ -51,6 +51,16 @@ jobs:
     env:
       RUNNER_DEBUG: 1
     steps:
+
+      - name: git config to accept long paths
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+          git config --system core.longpaths true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
       - uses: actions/checkout@v3
         with:
           lfs: true
@@ -83,7 +93,7 @@ jobs:
           solution-type: 'Unmanaged'
           overwrite-files: true
 
-      - name: Update Solution Version
+      - name: update solution version
         shell: pwsh
         run: |
           [xml]$XmlDocument = Get-Content -Path ${{ inputs.solution_folder}}/${{ inputs.solution_name }}/Other/Solution.xml
@@ -103,14 +113,31 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           allow-empty-commit: true
           branch-name: ${{ inputs.branch_name }}-${{ inputs.solution_name }}
-    
+
+      - name: fetch develop branch
+        run: |
+          git --version
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+          git config --system core.longpaths true
+          git fetch --no-tags --prune --depth=1 origin
+          git checkout ${{ inputs.branch_name }}-${{ inputs.solution_name }}
+          git pull origin develop --allow-unrelated-histories --strategy-option ours
+          git commit -m "Merge with develop branch"
+          git push
+
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: create pull request
-        run: gh pr create -B develop -H ${{ inputs.branch_name }}-${{ inputs.solution_name }} --title 'Merge ${{ inputs.branch_name }} into develop' --body 'Created by Github action'
+        run: |
+          gh pr create -B develop -H ${{ inputs.branch_name }}-${{ inputs.solution_name }} --title 'Merge ${{ inputs.branch_name }} into develop' --body 'Created by Github action'
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: merge pull requests
-        run: gh pr merge --admin --merge ${{ inputs.branch_name }}-${{ inputs.solution_name }}
+        run: |          
+          gh pr merge --admin --merge ${{ inputs.branch_name }}-${{ inputs.solution_name }}
         env:
             GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
             
