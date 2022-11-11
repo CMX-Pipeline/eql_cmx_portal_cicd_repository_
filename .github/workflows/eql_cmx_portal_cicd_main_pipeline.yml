@@ -1,4 +1,4 @@
-name: reusable workflow
+name: eql_cmx_portal_cicd_main_pipeline.yml
 
 run-name: Triggered by @${{ github.actor }}
 
