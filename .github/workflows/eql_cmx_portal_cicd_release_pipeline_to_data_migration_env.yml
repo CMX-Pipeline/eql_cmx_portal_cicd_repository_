@@ -1,4 +1,4 @@
-name: eql_cmx_portal_cicd_release_pipeline_to_data_migration_environment
+name: eql_cmx_portal_cicd_release_pipeline_to_data_migration_env.yml
 # prepare for releasing to data migration:
 
 on:
