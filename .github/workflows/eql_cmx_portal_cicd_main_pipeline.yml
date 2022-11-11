@@ -51,6 +51,8 @@ jobs:
   portal-data-to-build-env:
     needs: [ release-to-build-env ]
     uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_transport_portal_data_pipeline_to_build_env.yml@main
+    with:
+      portal_name: eql-trial-portal---acntrialportal    
     secrets:
       dev_url: ${{ secrets.dev_url }}
       dev_client_id: ${{ secrets.dev_client_id }}
@@ -58,7 +60,7 @@ jobs:
       build_url: ${{ secrets.build_url }}
       build_client_id: ${{ secrets.build_client_id }}
       build_secrets_id: ${{ secrets.build_secrets_id }}
-      tenant_id: ${{ secrets.tenant_id }}    
+      tenant_id: ${{ secrets.tenant_id }}
          
   release-to-sit-env:
     strategy:
