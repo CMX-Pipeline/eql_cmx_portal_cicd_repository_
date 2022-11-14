@@ -99,7 +99,7 @@ jobs:
           [xml]$XmlDocument = Get-Content -Path ${{ inputs.solution_folder}}/${{ inputs.solution_name }}/Other/Solution.xml
           $OldVersion = $XmlDocument.GetElementsByTagName('Version')
           [version]$Version = $OldVersion[0].'#text' 
-          [version]$NewVersion = "{0}.{1}.{2}.{3}" -f $Version.Major, $Version.Minor, ($Version.Build + 1), $Version.Revision
+          [version]$NewVersion = "{0}.{1}.{2}.{3}" -f $Version.Major, $Version.Minor, $Version.Build, ($Version.Revision + 1)
           $OldVersion[0].'#text'  = $NewVersion.ToString()
           $XmlDocument.Save('${{ inputs.solution_folder}}/${{ inputs.solution_name }}/Other/Solution.xml')
         env:
