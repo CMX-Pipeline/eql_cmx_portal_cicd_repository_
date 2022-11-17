@@ -98,7 +98,7 @@ jobs:
         
     - name: Delete branch
       run: |
-        gh pr close ${{ inputs.branch_name }}-${{ inputs.solution_name }} -d
+        gh pr -d ${{ inputs.branch_name }}-${{ inputs.solution_name }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
