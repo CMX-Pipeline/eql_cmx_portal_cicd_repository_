@@ -14,7 +14,7 @@ jobs:
     strategy:
       max-parallel: 1
       matrix:
-        target: [EQL20Customizing]
+        target: [EQL50Flows]
     uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_export_from_dev_pipeline.yml@main
     with:      
       solution_name: ${{ matrix.target }}
@@ -32,7 +32,7 @@ jobs:
     strategy:
         max-parallel: 1
         matrix:
-          target: [EQL20Customizing]
+          target: [EQL50Flows]
     needs: [ build ]
     uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_release_pipeline_to_build_env.yml@main
     with:
@@ -66,7 +66,7 @@ jobs:
     strategy:
       max-parallel: 1
       matrix:
-        target: [EQL20Customizing]
+        target: [EQL50Flows]
     needs: [ release-to-build-env ]
     uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_release_pipeline_to_sit_env.yml@main
     with:
@@ -94,7 +94,7 @@ jobs:
     strategy:
       max-parallel: 1
       matrix:
-        target: [EQL20Customizing]
+        target: [EQL50Flows]
     needs: [ release-to-build-env ]
     uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_release_pipeline_to_data_migration_env.yml@main
     with:
@@ -110,7 +110,7 @@ jobs:
       strategy:
         max-parallel: 1
         matrix:
-          target: [EQL20Customizing]
+          target: [EQL50Flows]
       needs: [ release-to-sit-env ]
       uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_release_pipeline_to_uat_env.yml@main
       with:
@@ -135,7 +135,7 @@ jobs:
       strategy:
         max-parallel: 1
         matrix:
-          target: [EQL20Customizing]
+          target: [EQL50Flows]
       needs: [ release-to-uat-env ]
       uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_release_pipeline_to_prod_env.yml@main
       with:
