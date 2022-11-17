@@ -5,6 +5,8 @@
   <EntityRelationship Name="business_unit_eql_primaryserviceselection" />
   <EntityRelationship Name="business_unit_eql_secondaryserviceselection" />
   <EntityRelationship Name="business_unit_eql_selection" />
+  <EntityRelationship Name="eql_eql_ewr_ServiceSelection_eql_ewrservicese" />
+  <EntityRelationship Name="eql_eql_ewr_ServiceType_eql_selection" />
   <EntityRelationship Name="eql_eql_ewrserviceselection_eql_electricalworkrequest_ewrsecondaryserviceselection" />
   <EntityRelationship Name="eql_eql_ewrserviceselection_eql_electricalworkrequest_ewrserviceselection" />
   <EntityRelationship Name="eql_eql_ewrserviceselection_eql_electricalworkrequest_ewrtype" />

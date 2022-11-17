@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml version="9.2.22101.174" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ImportExportXml version="9.2.22102.194" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SolutionManifest>
     <UniqueName>EQL20Customizing</UniqueName>
     <LocalizedNames>
       <LocalizedName description="EQL20Customizing" languagecode="1033" />
     </LocalizedNames>
     <Descriptions />
-    <Version>1.0.1.2</Version>
+    <Version>1.0.0.3</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>EQL</UniqueName>
@@ -137,6 +137,18 @@
       <RootComponent type="80" schemaName="eql_EQLSampleMDA" behavior="0" />
     </RootComponents>
     <MissingDependencies>
+      <MissingDependency>
+        <Required type="61" schemaName="eql_saveButton" displayName="eql_saveButton" solution="Active" />
+        <Dependent type="50" schemaName="eql_ewr:RibbonDiffXml" displayName="eql_ewr:RibbonDiffXml" parentSchemaName="ribboncustomization" parentDisplayName="Application Ribbons" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="eql_saveButton" displayName="eql_saveButton" solution="Active" />
+        <Dependent type="60" displayName="Information" parentDisplayName="EWR" id="{b9773f27-f5c1-4c92-8b4b-faf602f4b75b}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="eql_saveButtonConstants" displayName="eql_saveButtonConstants" solution="Active" />
+        <Dependent type="60" displayName="Information" parentDisplayName="EWR" id="{b9773f27-f5c1-4c92-8b4b-faf602f4b75b}" />
+      </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="msdyn_/Images/AppModule_Default_Icon.png" displayName="msdyn_/Images/AppModule_Default_Icon.png" solution="AppModuleWebResources (2.5)" />
         <Dependent type="80" schemaName="eql_EQLSampleMDA" displayName="EQL Sample MDA" />
