@@ -137,7 +137,7 @@ jobs:
 
       - name: merge pull requests
         run: |          
-          gh pr merge --admin --merge --delete ${{ inputs.branch_name }}-${{ inputs.solution_name }} 
+          gh pr merge --admin --merge --delete-branch ${{ inputs.branch_name }}-${{ inputs.solution_name }} 
         env:
             GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
             
