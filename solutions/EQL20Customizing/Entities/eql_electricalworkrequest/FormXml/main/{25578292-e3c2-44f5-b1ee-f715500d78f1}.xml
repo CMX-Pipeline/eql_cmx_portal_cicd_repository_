@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{25578292-e3c2-44f5-b1ee-f715500d78f1}</formid>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab verticallayout="true" id="{53e0bdf1-7482-42da-b2ea-268b0057491c}" IsUserDefined="1" expanded="true">
+          <labels>
+            <label description="General" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="33%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{c6f0c2d9-b1f1-4d6d-9a26-aae36054b644}">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{70d1b2c5-2c8c-4ff3-9bbf-513512366803}">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                        </labels>
+                        <control id="eql_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="eql_name" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{cde06e2c-b31c-d948-6746-b970c7193276}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="EC Business Name" languagecode="1033" />
+                        </labels>
+                        <control id="eql_ecbusinessname" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="eql_ecbusinessname" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{cd818955-ca61-1421-cc1c-dc442ba4e7d4}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="EC License Number" languagecode="1033" />
+                        </labels>
+                        <control id="eql_eclicensenumber" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="eql_eclicensenumber" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{931aa077-9250-e0ce-0247-575c6bc1819a}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="EC License Expiry Date" languagecode="1033" />
+                        </labels>
+                        <control id="eql_eclicenseexpirydate" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="eql_eclicenseexpirydate" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="66%">
+              <sections>
+                <section name="{53e0bdf1-7482-42da-b2ea-268b0057491c}_section_4" showlabel="false" showbar="false" locklevel="0" id="{90b4a5ed-d62c-8737-55a9-7c8055498b05}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{1446ed33-513b-3c06-82c2-5a66ec298838}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="EWR Type (Lookup to EWR Service Selection)" languagecode="1033" />
+                        </labels>
+                        <control id="eql_ewrtype" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="eql_ewrtype" disabled="false" uniqueid="{692c9a3a-4782-ba1e-82de-72b6c7c65cc5}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>true</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{98DF8493-5E67-45AF-BD7C-5A8D283D3442}</DefaultViewId>
+                            <AvailableViewIds>{98DF8493-5E67-45AF-BD7C-5A8D283D3442}</AvailableViewIds>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e5b4c87d-8ca2-2c1c-a846-a430902b6c81}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="EWR Service Selection" languagecode="1033" />
+                        </labels>
+                        <control id="eql_ewrserviceselection" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="eql_ewrserviceselection" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6624189a-b961-d59d-c44a-4e8e89ea1ddd}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="EWR Secondary Service Selection" languagecode="1033" />
+                        </labels>
+                        <control id="eql_ewrsecondaryserviceselection" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="eql_ewrsecondaryserviceselection" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section showlabel="false" showbar="false" id="{82046e87-2654-48e6-ac4e-ea176ade2c43}" IsUserDefined="0" height="auto">
+                  <labels>
+                    <label description="Notes" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell showlabel="false" rowspan="15" auto="false" id="{24cfb643-db36-477f-a8ea-c09d4f540768}">
+                        <labels>
+                          <label description="Note Text" languagecode="1033" />
+                        </labels>
+                        <control id="notescontrol" classid="{06375649-c143-495e-a496-c962e5b4488e}">
+                          <parameters>
+                            <DefaultTabId>NotesTab</DefaultTabId>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row height="auto" />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <Navigation>
+        <NavBar></NavBar>
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <controlDescriptions />
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>
