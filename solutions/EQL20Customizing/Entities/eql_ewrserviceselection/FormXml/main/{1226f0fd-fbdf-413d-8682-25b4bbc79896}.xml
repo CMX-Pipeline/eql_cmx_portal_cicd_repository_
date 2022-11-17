@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{1226f0fd-fbdf-413d-8682-25b4bbc79896}</formid>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab verticallayout="true" id="{1193303b-529e-4e5d-b2d3-17c4a880cc5e}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="33%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{07b5fbbc-cd5d-4fb7-92bc-657000c83bcf}" name="{07b5fbbc-cd5d-4fb7-92bc-657000c83bcf}" columns="11" locklevel="0" labelwidth="283" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{74f8813c-141b-4505-8fe0-dcec50a7521f}">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                        </labels>
+                        <control id="eql_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="eql_name" />
+                      </cell>
+                      <cell id="{b5110be3-4abb-9707-8bc3-e130be453dde}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="typehelptext" languagecode="1033" />
+                        </labels>
+                        <control id="eql_typehelptext" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="eql_typehelptext" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a3d89970-a020-9549-4d76-a61e213163ba}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="EWR Secondary Service Selection" languagecode="1033" />
+                        </labels>
+                        <control id="eql_ewrsecondaryserviceselection" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="eql_ewrsecondaryserviceselection" disabled="false" />
+                      </cell>
+                      <cell id="{25dab615-a54d-45ea-ad48-7600452165a0}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="EWR Service Selection Help Text" languagecode="1033" />
+                        </labels>
+                        <control id="eql_ewrserviceselectionhelptext" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="eql_ewrserviceselectionhelptext" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{3809a710-8c6b-6d61-bd62-089a72b096e1}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="EWR Service Selection" languagecode="1033" />
+                        </labels>
+                        <control id="eql_ewrserviceselection" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="eql_ewrserviceselection" disabled="false" uniqueid="{2ac33520-5276-206c-8dd5-1b6c467a8e9d}" />
+                      </cell>
+                      <cell id="{3296852c-8d0b-cde0-86b3-c80a0cc272bd}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{cbdacedd-6818-45c0-8ca2-4f9e6ae3b8e5}" showlabel="true" locklevel="1" visible="false">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" uniqueid="{87406ddd-e68d-c483-649b-958843a6733c}" disabled="false">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                          </parameters>
+                        </control>
+                      </cell>
+                      <cell id="{e9326308-a26c-0726-7ca3-4ccc7559dd7e}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section showlabel="false" showbar="false" id="{c649c7bc-633a-400f-b77c-b57c091eac90}" IsUserDefined="0" height="auto">
+                  <labels>
+                    <label description="Notes" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell showlabel="false" rowspan="15" auto="false" id="{21b0c28a-3d61-472d-bb43-654e52316c22}">
+                        <labels>
+                          <label description="Note Text" languagecode="1033" />
+                        </labels>
+                        <control id="notescontrol" classid="{06375649-c143-495e-a496-c962e5b4488e}">
+                          <parameters>
+                            <DefaultTabId>NotesTab</DefaultTabId>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row height="auto" />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="66%">
+              <sections></sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <Navigation>
+        <NavBar></NavBar>
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <controlDescriptions />
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>
