@@ -65,7 +65,7 @@ jobs:
     - uses: actions/checkout@v2
       with:
         lfs: true
-        ref: ${{ inputs.branch_name }}-${{ inputs.solution_name }}
+        ref: develop
 
     - name: pack solution
       uses: microsoft/powerplatform-actions/pack-solution@v0
