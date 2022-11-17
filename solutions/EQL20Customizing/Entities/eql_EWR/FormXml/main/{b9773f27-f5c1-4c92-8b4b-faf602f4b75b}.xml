@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{b9773f27-f5c1-4c92-8b4b-faf602f4b75b}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls" shownavigationbar="true" showImage="false" maxWidth="1920">
+      <tabs>
+        <tab verticallayout="true" id="{20482d8c-acd6-4214-a257-8cfc06ebe41a}" IsUserDefined="1" name="general">
+          <labels>
+            <label description="General" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{1d081e79-d447-4651-a85b-dea5a6806679}" name="EWR Form">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{3484560f-4618-4fb5-9e3d-ab6e4bae7d27}" userspacer="true" showlabel="false" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e15607c7-ba11-429a-bab8-45340e91dfca}">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                        </labels>
+                        <control id="eql_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="eql_name" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{353908b2-875a-4dec-954b-dbb24ff46a24}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="EWR Number" languagecode="1033" />
+                        </labels>
+                        <control id="eql_ewrnumber" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="eql_ewrnumber" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b803aa2f-0929-44d0-b91b-6ed937f9c39d}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="EC Licence Number" languagecode="1033" />
+                        </labels>
+                        <control id="eql_eclicencenumber" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="eql_eclicencenumber" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{83ed5032-ec0a-4151-b860-dc2546ba3238}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="EC License Expiry Date" languagecode="1033" />
+                        </labels>
+                        <control id="eql_eclicenseexpirydate" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="eql_eclicenseexpirydate" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{18682f7e-4995-4c88-bdb2-c57e900efcef}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Service Type" languagecode="1033" />
+                        </labels>
+                        <control id="eql_servicetype" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="eql_servicetype" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{595a2f76-fb87-46f0-b92c-e86c97f893a0}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Meter Location" languagecode="1033" />
+                        </labels>
+                        <control id="eql_meterlocation" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="eql_meterlocation" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{db520f38-ebcb-4314-8135-5932ff308382}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Service Selection" languagecode="1033" />
+                        </labels>
+                        <control id="eql_serviceselection" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="eql_serviceselection" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1b122f1d-097a-4655-8dbb-1c7ac9619b41}" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Ready For Test Date" languagecode="1033" />
+                        </labels>
+                        <control id="eql_readyfortestdate" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="eql_readyfortestdate" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{f93b6043-7fd6-4940-a51e-6d511beedfc3}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="ABN" languagecode="1033" />
+                        </labels>
+                        <control id="eql_abn" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="eql_abn" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1906d9b7-9952-4cf7-a298-d95507498729}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Additional Information About Request" languagecode="1033" />
+                        </labels>
+                        <control id="eql_additionalinformationaboutrequest" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="eql_additionalinformationaboutrequest" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{888f95ae-2664-4453-981c-41fd00e9c7a5}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Metering Required" languagecode="1033" />
+                        </labels>
+                        <control id="eql_meteringrequired" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="eql_meteringrequired" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{aa04319b-96b8-4c51-a0da-ede5d7c70ac8}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Status Reason" languagecode="1033" />
+                        </labels>
+                        <control id="statuscode" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="statuscode" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c52216e0-ef42-4001-903c-3880f0f1d4a7}">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{739a577d-76ba-49e0-8f0d-8c61d0a93c59}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{64ad2b9f-7af6-41f7-92a8-2100674b7011}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{cd1a398e-7edd-41d8-9355-44bea8bc7350}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{274c73a6-9eed-4bdf-aa35-538f3e37b801}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{712b017e-eeba-46fa-bb03-5210703f4413}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{9e57bccb-4fbc-4218-8605-1c8a26c42721}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{a3e15b77-8b3f-4aa2-a117-9d7f834fe074}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{b9b767cb-194a-42ad-b5c0-064c4556ffa3}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <Navigation>
+        <NavBar></NavBar>
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <formLibraries>
+        <Library name="eql_saveButtonConstants" libraryUniqueId="{9965ab8b-65ed-dc08-02ae-90d26110bce0}" />
+        <Library name="eql_saveButton" libraryUniqueId="{904bd97d-302e-3a27-5c53-4b4e36c3768b}" />
+      </formLibraries>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>
