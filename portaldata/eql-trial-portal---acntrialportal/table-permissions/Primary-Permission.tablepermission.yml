@@ -1,0 +1,14 @@
+adx_append: false
+adx_appendto: false
+adx_create: true
+adx_delete: false
+adx_entitylogicalname: eql_ewr
+adx_entityname: Primary Permission
+adx_entitypermission_webrole:
+- bd8fa9e9-2555-ed11-bba2-000d3a34c578
+- be8fa9e9-2555-ed11-bba2-000d3a34c578
+- bf8fa9e9-2555-ed11-bba2-000d3a34c578
+adx_entitypermissionid: b5f8efcf-2c55-ed11-bba2-000d3a34c578
+adx_read: true
+adx_scope: 756150000
+adx_write: true
