@@ -1,2 +1,4 @@
 adx_website:
-    - adx_name: Test Name
+    - adx_websiteid: Test Name
+    - adx_value: TestValue
+    - adx_name: EQL Trial Portal - acntrialportal
