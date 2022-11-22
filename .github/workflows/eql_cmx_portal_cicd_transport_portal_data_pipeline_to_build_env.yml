@@ -54,7 +54,16 @@ jobs:
         download-path: portaldata
         website-id: 'b3cb3b78-405f-ed11-9561-000d3a34c578'
         overwrite: true
-        
+
+    - name: copy deployment profile to portaldata folder
+      run: |
+          ls -d */
+          mkdir portaldata/${{ inputs.portal_name }}/deployment-profiles
+          cp -R deployment-profiles portaldata/${{ inputs.portal_name }}/deployment-profiles
+      env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+
     - name: push portal data to branch
       run: |
           ls -d */
@@ -101,5 +110,5 @@ jobs:
         client-secret: ${{ secrets.build_secrets_id }}
         tenant-id: ${{ secrets.tenant_id }}
         upload-path: portaldata/${{ inputs.portal_name }}
-        deployment-profile: CMX-Pipeline/eql_cmx_portal_cicd_repository_/deployment-profiles/portal-name/build.deployment.yml
+        deployment-profile: build
         
