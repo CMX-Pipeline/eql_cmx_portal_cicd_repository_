@@ -59,7 +59,7 @@ jobs:
       run: |
           ls -d */
           mkdir portaldata/${{ inputs.portal_name }}/deployment-profiles
-          cp -R deployment-profiles portaldata/${{ inputs.portal_name }}/deployment-profiles
+          cp -R deployment-profiles/portal-name/build.deployment.yml portaldata/${{ inputs.portal_name }}/deployment-profiles
       env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
