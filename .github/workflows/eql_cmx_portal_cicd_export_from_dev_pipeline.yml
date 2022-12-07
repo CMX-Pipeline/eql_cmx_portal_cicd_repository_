@@ -66,6 +66,7 @@ jobs:
           lfs: true
 
       - name: clean up develop branch
+        shell: bash
         run: |
           git --version
           git config user.name "GitHub Actions Bot"
