@@ -117,6 +117,7 @@ jobs:
           rm -r ${{ inputs.solution_name }}
           git commit -m "Deleted Folder ${{ inputs.solution_name }} in preparation for branch solution task"
           git push --force
+          git checkout main
 
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
