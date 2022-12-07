@@ -112,34 +112,8 @@ jobs:
           solution-target-folder: ${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           allow-empty-commit: true
-          branch-name: ${{ inputs.branch_name }}-${{ inputs.solution_name }}
-
-      - name: fetch develop branch
-        run: |
-          git --version
-          git config user.name "GitHub Actions Bot"
-          git config user.email "<>"
-          git config --system core.longpaths true
-          git fetch --no-tags --prune --depth=1 origin
-          git checkout ${{ inputs.branch_name }}-${{ inputs.solution_name }}
-          git pull origin develop --allow-unrelated-histories --strategy-option ours
-          git commit -m "Merge with develop branch"
-          git push
-
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: create pull request
-        run: |
-          gh pr create -B develop -H ${{ inputs.branch_name }}-${{ inputs.solution_name }} --title 'Merge ${{ inputs.branch_name }} into develop' --body 'Created by Github action'
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: merge pull requests
-        run: |          
-          gh pr merge --admin --merge --delete-branch ${{ inputs.branch_name }}-${{ inputs.solution_name }} 
-        env:
-            GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          branch-name: develop
+          clobber-branch: true
             
       - name: download check-solution logs
         uses: actions/download-artifact@v2
