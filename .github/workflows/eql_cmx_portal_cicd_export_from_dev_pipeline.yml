@@ -113,7 +113,7 @@ jobs:
           git config --system core.longpaths true
           git fetch --no-tags --prune --depth=1 origin
           cd ${{ inputs.solution_folder}}
-          rm -${{ inputs.solution_name }}
+          rm ${{ inputs.solution_name }}
           git commit -m "Deleted Folder ${{ inputs.solution_name }} in preparation for branch solution task"
           git push --force
 
