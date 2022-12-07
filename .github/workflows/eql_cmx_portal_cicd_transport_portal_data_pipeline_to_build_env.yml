@@ -55,13 +55,14 @@ jobs:
         website-id: 'b3cb3b78-405f-ed11-9561-000d3a34c578'
         overwrite: true
 
-    - name: copy deployment profile to portaldata folder
-      run: |
-          ls -d */
-          mkdir portaldata/${{ inputs.portal_name }}/deployment-profiles
-          cp -R deployment-profiles/portal-name/build.deployment.yml portaldata/${{ inputs.portal_name }}/deployment-profiles
-      env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+    # Commented out since we won't be using deployment profiles for now
+    # - name: copy deployment profile to portaldata folder
+    #   run: |
+    #       ls -d */
+    #       mkdir -p portaldata/${{ inputs.portal_name }}/deployment-profiles
+    #       cp -R deployment-profiles/portal-name/build.deployment.yml portaldata/${{ inputs.portal_name }}/deployment-profiles
+    #   env:
+    #       GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
 
     - name: push portal data to branch

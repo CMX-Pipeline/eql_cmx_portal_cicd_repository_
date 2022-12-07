@@ -64,7 +64,32 @@ jobs:
       - uses: actions/checkout@v3
         with:
           lfs: true
-                        
+
+      - name: clean up develop branch
+        shell: pwsh
+        run: |
+          git --version
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+          git config --system core.longpaths true
+          git fetch --no-tags --prune --depth=1 origin
+          git checkout develop
+          cd ${{ inputs.solution_target_folder}}
+          if (Test-Path ${{ inputs.solution_name }}) {
+            Write-Host "Folder Exists"
+            Remove-Item ${{ inputs.solution_name }} -Recurse -Force
+          }
+          else
+          {
+              Write-Host "Folder Doesn't Exists"
+          }
+          git commit -m "Deleted Folder ${{ inputs.solution_name }} in preparation for branch solution task"
+          git push --force
+          git checkout main
+
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}     
+
       - name: export solution from dev
         uses: microsoft/powerplatform-actions/export-solution@v0
         with:
@@ -114,6 +139,7 @@ jobs:
           allow-empty-commit: true
           branch-name: ${{ inputs.branch_name }}-${{ inputs.solution_name }}
 
+
       - name: fetch develop branch
         run: |
           git --version
@@ -122,9 +148,8 @@ jobs:
           git config --system core.longpaths true
           git fetch --no-tags --prune --depth=1 origin
           git checkout ${{ inputs.branch_name }}-${{ inputs.solution_name }}
-          git pull origin develop --allow-unrelated-histories --strategy-option ours
           git commit -m "Merge with develop branch"
-          git push
+          git push --force
 
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
