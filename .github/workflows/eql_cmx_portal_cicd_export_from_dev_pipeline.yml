@@ -60,7 +60,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Delete Solutions folder in develop branch
+
+      - uses: actions/checkout@v3
+        with:
+          lfs: true
+
+      - name: clean up develop branch
         run: |
           git --version
           git config user.name "GitHub Actions Bot"
@@ -74,10 +79,9 @@ jobs:
           git push --force
           git checkout main
 
-      - uses: actions/checkout@v3
-        with:
-          lfs: true
-                        
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}     
+
       - name: export solution from dev
         uses: microsoft/powerplatform-actions/export-solution@v0
         with:
@@ -117,11 +121,6 @@ jobs:
           $XmlDocument.Save('${{ inputs.solution_folder}}/${{ inputs.solution_name }}/Other/Solution.xml')
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
-
-
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: branch solution
         uses: microsoft/powerplatform-actions/branch-solution@v0
