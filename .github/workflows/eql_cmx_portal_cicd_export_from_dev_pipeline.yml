@@ -74,7 +74,7 @@ jobs:
           git fetch --no-tags --prune --depth=1 origin
           git checkout develop
           cd ${{ inputs.solution_target_folder}}
-          rm --force ${{ inputs.solution_name }}
+          IF EXIST ${{ inputs.solution_name }} RMDIR /S /Q ${{ inputs.solution_name }}
           git commit -m "Deleted Folder ${{ inputs.solution_name }} in preparation for branch solution task"
           git push --force
           git checkout main
