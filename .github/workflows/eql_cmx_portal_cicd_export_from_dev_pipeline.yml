@@ -66,7 +66,7 @@ jobs:
           lfs: true
 
       - name: clean up develop branch
-        shell: bash
+        shell: pwsh
         run: |
           git --version
           git config user.name "GitHub Actions Bot"
@@ -75,10 +75,14 @@ jobs:
           git fetch --no-tags --prune --depth=1 origin
           git checkout develop
           cd ${{ inputs.solution_target_folder}}
-          if [ -d ${{ inputs.solution_name }} ]; then
-            echo "$DIRECTORY does exist."
-            RMDIR /S /Q ${{ inputs.solution_name }}
-          fi
+          if (Test-Path ${{ inputs.solution_name }}) {
+            Write-Host "Folder Exists"
+            Remove-Item ${{ inputs.solution_name }} -Recurse -Force
+          }
+          else
+          {
+              Write-Host "Folder Doesn't Exists"
+          }
           git commit -m "Deleted Folder ${{ inputs.solution_name }} in preparation for branch solution task"
           git push --force
           git checkout main
