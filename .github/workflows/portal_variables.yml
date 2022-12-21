@@ -1,11 +1,11 @@
 adx_sitesetting:
-    - adx_sitesettingid: 4ad86900-b5d7-43ac-1234-482529724970
-      adx_value: ${OS.FacebookAppId} 
-      adx_name: Authentication/OpenAuth/Facebook/AppId
-    - adx_sitesettingid: 5ad86900-b5d7-43ac-8359-482529724979
-      adx_value: contoso_sample
-      adx_name: Authentication/OpenAuth/Facebook/Secret
-adx_contentsnippet:
-    - adx_contentsnippetid: b0a1bc03-0df1-4688-86e8-c67b34476510
-      adx_name: PowerBI/contoso/sales
-      adx_value:  https://powerbi.com/group/contoso/sales
+    -   adx_sitesettingid: a8ac79a5-7e65-ed11-9561-00224893b6d3
+        adx_name: Authentication/OpenIdConnect/AAD-B2C_1/ClientId
+        adx_value: c4b48edb-5dc4-4b01-9f97-26f44c9765f4
+    -   adx_sitesettingid: 5e11f89f-7e65-ed11-9561-002248122533
+        adx_name: Authentication/OpenIdConnect/AAD-B2C_1/RedirectUri
+        adx_value: https://eql-elec-contractors-dev.powerappsportals.com/signin-aad-b2c_1
+    -   adx_sitesettingid: cfe0d6a0-7e65-ed11-9561-00224893bfaf
+        adx_name: Authentication/OpenIdConnect/AAD-B2C_1/Authority
+        adx_value: https://eqlcorpidentityb2cnonprod.b2clogin.com/tfp/dac8eca4-0c25-4974-b69d-7ab257a285e4/b2c_1_cmx_portal_signupsignin_nonprod/v2.0/
+    
