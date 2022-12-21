@@ -1,11 +1,8 @@
-name: eql_cmx_portal_cicd_main_pipeline.yml
+name: eql_cmx_crm_cicd_main_pipeline.yml
 
 run-name: Triggered by @${{ github.actor }}
 
-on:
-  release:
-    types: [created]
-    
+on:    
   workflow_dispatch:
   
 
