@@ -47,20 +47,6 @@ jobs:
       build_client_id: ${{ secrets.build_client_id }}
       build_secrets_id: ${{ secrets.build_secrets_id }}
       tenant_id: ${{ secrets.tenant_id }}
-  
-  portal-data-to-build-env:
-    # needs: [ release-to-build-env ]
-    uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_transport_portal_data_pipeline_to_build_env.yml@main
-    with:
-      portal_name: eql-trial-portal---acntrialportal    
-    secrets:
-      dev_url: ${{ secrets.dev_url }}
-      dev_client_id: ${{ secrets.dev_client_id }}
-      dev_secrets_id: ${{ secrets.dev_secrets_id }}
-      build_url: ${{ secrets.build_url }}
-      build_client_id: ${{ secrets.build_client_id }}
-      build_secrets_id: ${{ secrets.build_secrets_id }}
-      tenant_id: ${{ secrets.tenant_id }}
          
   release-to-sit-env:
     strategy:
@@ -77,18 +63,6 @@ jobs:
       sit_client_id: ${{ secrets.sit_client_id }}
       sit_secrets_id: ${{ secrets.sit_secrets_id }}
       tenant_id: ${{ secrets.tenant_id }}
-    
-  portal-data-to-sit-env:
-      needs: [ release-to-sit-env ]
-      uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_transport_portal_data_pipeline_to_sit_env.yml@main
-      secrets:
-        build_url: ${{ secrets.build_url }}
-        build_client_id: ${{ secrets.build_client_id }}
-        build_secrets_id: ${{ secrets.build_secrets_id }}
-        sit_url: ${{ secrets.sit_url }}
-        sit_client_id: ${{ secrets.sit_client_id }}
-        sit_secrets_id: ${{ secrets.sit_secrets_id }}
-        tenant_id: ${{ secrets.tenant_id }}  
       
   release-to-data-migration-env:
     strategy:
@@ -121,15 +95,6 @@ jobs:
         uat_client_id: ${{ secrets.uat_client_id }}
         uat_secrets_id: ${{ secrets.uat_secrets_id }}
         tenant_id: ${{ secrets.tenant_id }}
-        
-  portal-data-to-uat-env:
-      needs: [ release-to-uat-env ]
-      uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_transport_portal_data_pipeline_to_uat_env.yml@main
-      secrets:
-        uat_url: ${{ secrets.uat_url }}
-        uat_client_id: ${{ secrets.uat_client_id }}
-        uat_secrets_id: ${{ secrets.uat_secrets_id }}
-        tenant_id: ${{ secrets.tenant_id }}
   
   release-to-prod-env:
       strategy:
@@ -141,15 +106,6 @@ jobs:
       with:
         solution_name: ${{ matrix.target }}
         solution_release_folder: out/release
-      secrets:
-        prod_url: ${{ secrets.prod_url }}
-        prod_client_id: ${{ secrets.prod_client_id }}
-        prod_secrets_id: ${{ secrets.prod_secrets_id }}
-        tenant_id: ${{ secrets.tenant_id }}
-
-  portal-data-to-prod-env:
-      needs: [ release-to-prod-env ]
-      uses: CMX-Pipeline/eql_cmx_portal_cicd_repository_/.github/workflows/eql_cmx_portal_cicd_transport_portal_data_pipeline_to_prod_env.yml@main
       secrets:
         prod_url: ${{ secrets.prod_url }}
         prod_client_id: ${{ secrets.prod_client_id }}
