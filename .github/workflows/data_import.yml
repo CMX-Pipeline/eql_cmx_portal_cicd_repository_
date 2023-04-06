@@ -1,0 +1,67 @@
+name: eql_cmx_portal_cicd_export_from_dev_pipeline.yml
+# Export solution from DEV environment
+#  unpack it and prepare, commit and push a git branch with the changes
+
+on:
+  workflow_call:
+    inputs:
+      # Change this value
+      solution_name:
+        description: 'name of the solution to worked on from Power Platform'
+        required: true
+        type: string
+      branch_name:
+        description: 'name of the branch created'
+        required: true
+        type: string        
+       #Do Not change these values
+      solution_exported_folder:
+        description: 'folder name for staging the exported solution *do not change*'
+        required: true
+        default: out/exported/
+        type: string
+      solution_folder:
+        description: 'staging the unpacked solution folder before check-in *do not change*'
+        required: true
+        default: out/solutions/
+        type: string
+      solution_target_folder: 
+       description: 'folder name to be created and checked in *do not change*'
+       required: true
+       default: solutions/
+       type: string
+    secrets:
+      dev_url:
+        description: 'Dev environment url.'
+        required: true      
+      dev_client_id: 
+        description: 'The client id dev'
+        required: true
+      tenant_id: 
+        description: 'The tenant id'
+        required: true
+      dev_secrets_id:
+        description: 'The secret value for authentication using SPN'
+        required: true      
+
+jobs:
+  data-import:
+    # environment: dev    
+    runs-on: windows-latest
+    env:
+      RUNNER_DEBUG: 1
+    steps:
+
+      - name: git config to accept long paths
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+          git config --system core.longpaths true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+      - uses: actions/checkout@v3
+        with:
+          lfs: true
+          
